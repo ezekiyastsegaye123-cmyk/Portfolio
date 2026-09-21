@@ -1,0 +1,18 @@
+# faf:start
+<!-- faf: ezekiyas-portfolio | TypeScript | frontend | Admissions portfolio and computational chemistry workbench for Ezekiyas Tsegaye demonstrating closed-loop pyrolysis modeling and scientific computing for Fall 2026/2027 admissions. -->
+<!-- faf: claim=project.faf | family=FAF -->
+
+# .cursorrules
+# Authored from project.faf — ezekiyas-portfolio
+
+language: TypeScript
+
+# Stack
+# Framework: React
+# CSS: Tailwind CSS
+# UI Library: Lucide Icons + Framer Motion
+# State: React Hooks
+# Hosting: Vercel + GitHub Pages
+# Build: Vite
+# CI/CD: GitHub Actions
+# faf:end

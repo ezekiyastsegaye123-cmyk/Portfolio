@@ -1,0 +1,74 @@
+{
+  "birthCertificate": {
+    "born": "2026-09-21T16:49:41.831Z",
+    "birthDNA": 44,
+    "birthDNASource": "init",
+    "projectDNA": "addd8dbc6d6e680d",
+    "certificate": "FAF-2026-PORTFOLI-QP0D"
+  },
+  "versions": [
+    {
+      "version": "v1.0.0",
+      "timestamp": "2026-09-21T16:49:41.831Z",
+      "score": 44,
+      "changes": [
+        "Birth — initial context"
+      ],
+      "growth": 0
+    },
+    {
+      "version": "v1.0.1",
+      "timestamp": "2026-09-21T16:52:06.526Z",
+      "score": 100,
+      "changes": [
+        "refresh — re-grounded"
+      ],
+      "growth": 56
+    }
+  ],
+  "current": {
+    "version": "v1.0.1",
+    "score": 100,
+    "lastSync": "2026-09-21T16:52:06.526Z"
+  },
+  "growth": {
+    "totalGrowth": 56,
+    "daysActive": 0,
+    "milestones": [
+      {
+        "type": "birth",
+        "score": 44,
+        "date": "2026-09-21T16:49:41.831Z",
+        "version": "v1.0.0",
+        "label": "Birth",
+        "emoji": "🐣"
+      },
+      {
+        "type": "doubled",
+        "score": 100,
+        "date": "2026-09-21T16:52:06.526Z",
+        "version": "v1.0.1",
+        "label": "Doubled",
+        "emoji": "2️⃣"
+      },
+      {
+        "type": "peak",
+        "score": 100,
+        "date": "2026-09-21T16:52:06.526Z",
+        "version": "v1.0.1",
+        "label": "Peak",
+        "emoji": "🏔️"
+      },
+      {
+        "type": "current",
+        "score": 100,
+        "date": "2026-09-21T16:52:06.526Z",
+        "version": "v1.0.1",
+        "label": "Current",
+        "emoji": "📍"
+      }
+    ]
+  },
+  "lastModified": "2026-09-21T16:52:06.527Z",
+  "format": "faf-dna-v1"
+}

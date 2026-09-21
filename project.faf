@@ -1,0 +1,57 @@
+faf_version: "3.0"
+project:
+  name: ezekiyas-portfolio
+  goal: Admissions portfolio and computational chemistry workbench for Ezekiyas Tsegaye demonstrating closed-loop pyrolysis modeling and scientific computing for Fall 2026/2027 admissions.
+  main_language: TypeScript
+  type: frontend
+stack:
+  frontend: React
+  css_framework: Tailwind CSS
+  ui_library: Lucide Icons + Framer Motion
+  state_management: React Hooks
+  backend: slotignored
+  api_type: slotignored
+  runtime: slotignored
+  database: slotignored
+  connection: slotignored
+  hosting: Vercel + GitHub Pages
+  build: Vite
+  cicd: GitHub Actions
+  monorepo_tool: slotignored
+  package_manager: slotignored
+  workspaces: slotignored
+  admin: slotignored
+  cache: slotignored
+  search: slotignored
+  storage: slotignored
+human_context:
+  who: admissions evaluators
+  what: academic research portfolio
+  why: showcase computational chemistry
+  where: Vercel + GitHub Pages
+  when: Fall 2026/2027 admissions
+  how: React + Vite + Tailwind
+monorepo:
+  packages_count: slotignored
+  build_orchestrator: slotignored
+  versioning_strategy: slotignored
+  shared_configs: slotignored
+  remote_cache: slotignored
+tech_stack:
+  - TypeScript
+  - React
+  - Tailwind CSS
+  - Vite
+  - Framer Motion
+  - Lucide React
+key_files:
+  - package.json
+  - README.md
+  - tsconfig.json
+  - src/App.tsx
+  - src/components/Hero.tsx
+  - src/components/PyrolysisSimulator.tsx
+commands:
+  build: npm run build
+  dev: npm run dev
+  preview: npm run preview
