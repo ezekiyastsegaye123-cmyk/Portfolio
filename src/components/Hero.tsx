@@ -50,6 +50,18 @@ export const Hero: React.FC = () => {
                 },
               }}
             >
+              {/* Field Badge */}
+              <motion.div 
+                variants={{
+                  hidden: { opacity: 0, y: 10 },
+                  visible: { opacity: 1, y: 0, transition: { duration: 0.35, ease: [0.16, 1, 0.3, 1] } },
+                }}
+                className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-specimen/15 border border-specimen/30 text-xs font-mono font-bold text-specimen mb-4"
+              >
+                <Atom className="size-3.5 text-specimen animate-[spin_16s_linear_infinite]" />
+                <span>INTENDED MAJOR: {profileData.personal.intendedMajor.toUpperCase()}</span>
+              </motion.div>
+
               {/* Applicant Name — High-Contrast, Crisp, Authoritative */}
               <motion.h1 
                 variants={{
