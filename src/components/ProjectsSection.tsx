@@ -15,8 +15,12 @@ import {
   Cpu, 
   Radio, 
   BookOpen,
-  ArrowRight
+  ArrowRight,
+  Maximize2,
+  X,
+  Atom
 } from 'lucide-react';
+import { GithubIcon } from './Icons';
 import { profileData, Project } from '../data/profileData';
 import { PyrolysisSimulator } from './PyrolysisSimulator';
 import { ProjectModal } from './ProjectModal';
@@ -26,6 +30,43 @@ import { cn } from '../lib/utils';
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
   const [activeModalProject, setActiveModalProject] = useState<Project | null>(null);
+  const [activeFradscrFigure, setActiveFradscrFigure] = useState<number>(0);
+  const [lightboxImage, setLightboxImage] = useState<{ url: string; title: string; caption: string } | null>(null);
+
+  const fradscrFigures = [
+    {
+      id: 'pipeline',
+      label: 'Pipeline Flow',
+      title: 'End-to-End Pipeline & Schwabe Solar Cycle Teleconnection',
+      url: '/images/fradscr/data_pipeline_overview.png',
+      caption: 'SPEI ground truth time series (1901–2014), 3-class distribution, and Schwabe solar cycle alignment with Ethiopian highland tree-ring growth memory.',
+      badge: 'SPEI & DENDRO MEMORY',
+    },
+    {
+      id: 'forecast',
+      label: '2025–35 Forecast',
+      title: '11-Year Operational Decadal Forecast (2025–2035)',
+      url: '/images/fradscr/forward_forecast_2025_2035.png',
+      caption: '100 Monte Carlo draws/year tracking Solar Cycle 25→26 minimum and operational borehole dispatch thresholds.',
+      badge: '11-YR MONTE CARLO FORECAST',
+    },
+    {
+      id: 'matrix',
+      label: 'Holdout Matrix',
+      title: 'Geographic Holdout Confusion Matrix (Debrebirkan Selassie eth001)',
+      url: '/images/fradscr/holdout_confusion_matrix.png',
+      caption: 'Zero-leakage spatial holdout evaluated on independent 106-year test horizon in Debrebirkan Selassie.',
+      badge: 'SPATIAL HOLDOUT (eth001)',
+    },
+    {
+      id: 'weights',
+      label: 'Feature Weights',
+      title: 'Dual-Model Feature Importance Comparison',
+      url: '/images/fradscr/feature_importance_dual.png',
+      caption: 'Random Forest Mean Decrease Impurity vs. XGBoost Gain across Heliophysics and Dendrochronology metrics.',
+      badge: 'RF vs. XGBOOST FEATURE GAIN',
+    },
+  ];
 
   const categories = ['All', 'Computational Chemistry', 'Environmental ML', 'EdTech & Systems', 'Civic Tech'];
 
@@ -213,8 +254,8 @@ export const ProjectsSection: React.FC = () => {
             <div className="p-6 sm:p-8 rounded-none border-l-4 border-specimen bg-paper dark:bg-[#0d0d1a] shadow-sm hover:border-specimen/80 dark:hover:border-specimen/80 transition-all">
               <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
                 
-                {/* Details (7 cols) */}
-                <div className="lg:col-span-7">
+                {/* Details (6 cols) */}
+                <div className="lg:col-span-6 xl:col-span-6">
                   <div className="flex flex-wrap items-center gap-2 mb-2">
                     <span className="px-2.5 py-0.5 rounded-md text-xs font-mono font-bold bg-[#2563eb]/10 text-[#2563eb] border border-[#2563eb]/30 flex items-center gap-1.5">
                       <Satellite className="size-3.5" />
@@ -259,46 +300,93 @@ export const ProjectsSection: React.FC = () => {
                       <span>Inspect Feature Engineering & Data Pipeline</span>
                       <ArrowUpRight className="size-4" />
                     </button>
+
+                    <a
+                      href="https://github.com/ezekiyastsegaye123-cmyk/Fradscr"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="min-h-[44px] inline-flex items-center gap-1.5 px-4 py-2 rounded-none text-xs font-mono font-semibold bg-ink/5 dark:bg-white/5 text-ink/80 dark:text-white/80 hover:bg-ink/10 dark:hover:bg-white/10 transition-colors border border-ink/10"
+                    >
+                      <GithubIcon className="size-3.5" />
+                      <span>Source Repository</span>
+                    </a>
                   </div>
                 </div>
 
-                {/* Telemetry Console Mockup (5 cols) */}
-                <div className="lg:col-span-5 p-5 rounded-none bg-[#080812] text-white font-mono text-xs border border-ink/15 space-y-4">
-                  <div className="flex items-center justify-between pb-3 border-b border-ink/15 text-[11px] text-ink/40">
-                    <span className="flex items-center gap-1.5 text-[#2563eb] font-bold">
-                      <Radio className="size-3.5 animate-pulse" />
-                      TELEMETRY PIPELINE
-                    </span>
-                    <span>FEDORA_ENV / SCIKIT</span>
-                  </div>
-
-                  <div className="space-y-2">
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-ink/40">Solar Flare Index (F10.7 Flux):</span>
-                      <span className="text-specimen font-bold">142.8 sfu</span>
+                {/* Right 6 cols: Dedicated Research Figure & Model Artifact Console */}
+                <div className="lg:col-span-6 xl:col-span-6 flex flex-col bg-[#080812] text-white rounded-none border border-ink/15 overflow-hidden shadow-xl">
+                  {/* Console Header with Offline Preservation Note */}
+                  <div className="p-3 bg-white/[0.04] border-b border-white/10 flex flex-wrap items-center justify-between gap-2 text-xs font-mono">
+                    <div className="flex items-center gap-2">
+                      <span className="size-2 rounded-full bg-[#2563eb] animate-pulse" />
+                      <span className="font-bold text-white text-[11px] tracking-wide">
+                        FRADSCR · MODEL TELEMETRY SNAPSHOT
+                      </span>
                     </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-ink/40">Landsat-8 Terrestrial NDVI:</span>
-                      <span className="text-reagent font-bold">0.34 (Deficit -18%)</span>
-                    </div>
-                    <div className="flex justify-between text-[11px]">
-                      <span className="text-ink/40">Soil Moisture Anomaly Index:</span>
-                      <span className="text-[#2563eb] font-bold">-1.82 σ (Moderate Stress)</span>
-                    </div>
-                  </div>
-
-                  <div className="p-3 rounded-none bg-[#0d0d1a]/90 border border-ink/15 text-[11px]">
-                    <span className="text-ink/40 block text-[10px] uppercase">Ensemble Classification Vector:</span>
-                    <span className="text-reagent font-bold block mt-1">
-                      ALERT LEVEL 2: Early Warning Onset (+21 Days)
-                    </span>
-                    <span className="text-ink/50 text-[10px] block mt-0.5">
-                      Confidence: 87.4% · False Positive Rate: &lt;5.2%
+                    <span className="text-[10px] px-2 py-0.5 bg-specimen/15 text-specimen border border-specimen/30 rounded-none font-semibold">
+                      OFFLINE STABLE ARCHIVE
                     </span>
                   </div>
 
-                  <div className="pt-2 text-[10px] text-ink/50">
-                    EGATE Capstone Defense · Developed in Fedora Linux terminal environment.
+                  {/* Figure Tabs */}
+                  <div className="flex flex-wrap border-b border-white/10 bg-black/40 p-1 gap-1">
+                    {fradscrFigures.map((fig, idx) => {
+                      const isActive = activeFradscrFigure === idx;
+                      return (
+                        <button
+                          key={fig.id}
+                          type="button"
+                          onClick={() => setActiveFradscrFigure(idx)}
+                          className={cn(
+                            "text-[11px] font-mono px-2.5 py-1.5 rounded-none transition-all",
+                            isActive 
+                              ? "bg-specimen text-white font-bold shadow-sm"
+                              : "text-white/50 hover:text-white hover:bg-white/5"
+                          )}
+                        >
+                          {fig.label}
+                        </button>
+                      );
+                    })}
+                  </div>
+
+                  {/* Figure Image Viewport */}
+                  <div 
+                    className="relative bg-black/60 p-2 cursor-pointer group flex items-center justify-center overflow-hidden min-h-[240px] sm:min-h-[270px]"
+                    onClick={() => setLightboxImage(fradscrFigures[activeFradscrFigure])}
+                    title="Click to view full-resolution figure"
+                  >
+                    <img 
+                      src={fradscrFigures[activeFradscrFigure].url}
+                      alt={fradscrFigures[activeFradscrFigure].title}
+                      className="max-h-[260px] w-auto max-w-full object-contain transition-transform duration-300 group-hover:scale-[1.02]"
+                      loading="lazy"
+                    />
+                    <div className="absolute bottom-2 right-2 bg-black/85 backdrop-blur-md px-2.5 py-1 text-[10px] font-mono text-white/90 border border-white/20 opacity-0 group-hover:opacity-100 transition-opacity flex items-center gap-1.5 shadow-md">
+                      <Maximize2 className="size-3 text-specimen" />
+                      <span>Click to view full-size</span>
+                    </div>
+                  </div>
+
+                  {/* Figure Caption & Context */}
+                  <div className="p-3.5 bg-white/[0.02] border-t border-white/10 text-xs font-mono text-white/70 space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <span className="font-bold text-white text-[11px]">
+                        {fradscrFigures[activeFradscrFigure].title}
+                      </span>
+                      <span className="text-[10px] text-specimen uppercase tracking-wider shrink-0 font-semibold">
+                        {fradscrFigures[activeFradscrFigure].badge}
+                      </span>
+                    </div>
+                    <p className="text-[11px] text-white/60 font-body leading-relaxed">
+                      {fradscrFigures[activeFradscrFigure].caption}
+                    </p>
+
+                    {/* Offline Preservation & Reason Notice */}
+                    <div className="pt-2 border-t border-white/10 flex flex-wrap items-center justify-between gap-2 text-[10px] text-white/40">
+                      <span>Streamlit web app preserved as static telemetry to prevent cloud sleep</span>
+                      <span className="text-reagent font-semibold">100% Offline Reliable</span>
+                    </div>
                   </div>
                 </div>
 
@@ -505,6 +593,56 @@ export const ProjectsSection: React.FC = () => {
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}
       />
+
+      {/* High-Resolution Telemetry Lightbox Modal */}
+      <AnimatePresence>
+        {lightboxImage && (
+          <motion.div
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            className="fixed inset-0 z-50 flex items-center justify-center p-4 bg-black/90 backdrop-blur-md"
+            onClick={() => setLightboxImage(null)}
+            role="dialog"
+            aria-modal="true"
+          >
+            <div 
+              className="relative max-w-5xl max-h-[92vh] w-full bg-[#080812] border border-white/20 p-4 sm:p-6 overflow-y-auto"
+              onClick={(e) => e.stopPropagation()}
+            >
+              <div className="flex items-center justify-between pb-3 border-b border-white/10 mb-4">
+                <div>
+                  <h4 className="text-sm sm:text-base font-display font-bold text-white">
+                    {lightboxImage.title}
+                  </h4>
+                  <p className="text-xs font-mono text-specimen mt-0.5">
+                    FRADSCR · Streamlit Telemetry Artifact Snapshot (Offline Archive)
+                  </p>
+                </div>
+                <button
+                  onClick={() => setLightboxImage(null)}
+                  className="min-h-[44px] min-w-[44px] flex items-center justify-center text-white/60 hover:text-white transition-colors"
+                  aria-label="Close image preview"
+                >
+                  <X className="size-6" />
+                </button>
+              </div>
+
+              <div className="flex justify-center bg-black/80 p-2 border border-white/10">
+                <img
+                  src={lightboxImage.url}
+                  alt={lightboxImage.title}
+                  className="max-h-[65vh] w-auto max-w-full object-contain"
+                />
+              </div>
+
+              <p className="mt-4 text-xs sm:text-sm font-mono text-white/70 leading-relaxed">
+                {lightboxImage.caption}
+              </p>
+            </div>
+          </motion.div>
+        )}
+      </AnimatePresence>
     </section>
   );
 };

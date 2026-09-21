@@ -1,6 +1,6 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, Award, FileText, FlaskConical, Gauge, Rotate3d } from 'lucide-react';
+import { ArrowDownRight, Award, FileText, Atom, Gauge, Rotate3d } from 'lucide-react';
 import { profileData } from '../data/profileData';
 import { silk, spring } from '../engine/motion';
 import { ReactorCore3D } from './3d/ReactorCore3D';
@@ -58,7 +58,7 @@ export const Hero: React.FC = () => {
                 }}
                 className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-specimen/15 border border-specimen/30 text-xs font-mono font-bold text-specimen mb-4"
               >
-                <FlaskConical className="size-3.5" />
+                <Atom className="size-3.5 text-specimen animate-[spin_16s_linear_infinite]" />
                 <span>INTENDED MAJOR: {profileData.personal.intendedMajor.toUpperCase()}</span>
               </motion.div>
 
@@ -70,7 +70,16 @@ export const Hero: React.FC = () => {
                 }}
                 className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-[-0.02em] leading-[1.05]"
               >
-                {profileData.personal.fullName}
+                <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
+                  <span>{profileData.personal.fullName}</span>
+                  <span 
+                    className="inline-flex items-center justify-center p-2 rounded-sm bg-white/[0.06] border border-specimen/40 text-specimen shadow-[0_0_20px_rgba(37,99,235,0.25)] relative group hover:border-specimen transition-colors"
+                    title="Computational Chemistry & Scientific ML"
+                  >
+                    <Atom className="size-6 sm:size-7 text-specimen animate-[spin_12s_linear_infinite]" />
+                    <span className="absolute -top-1 -right-1 size-2 rounded-full bg-reagent animate-pulse" />
+                  </span>
+                </div>
                 <span className="block text-white/35 font-display font-normal text-2xl sm:text-3xl lg:text-4xl mt-1">
                   ({profileData.personal.preferredName})
                 </span>

@@ -1,8 +1,10 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { X, FileText, CheckCircle2, Cpu, FlaskConical, Sparkles, Download } from 'lucide-react';
+import { X, FileText, CheckCircle2, Cpu, Atom, Sparkles, Download, ExternalLink, Maximize2 } from 'lucide-react';
+import { GithubIcon } from './Icons';
 import { Project } from '../data/profileData';
 import { silk, spring, motionKeywords } from '../engine/motion';
+import { cn } from '../lib/utils';
 
 interface ProjectModalProps {
   project: Project | null;
@@ -10,6 +12,8 @@ interface ProjectModalProps {
 }
 
 export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) => {
+  const [selectedImageIndex, setSelectedImageIndex] = useState<number>(0);
+
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (e.key === 'Escape') {
@@ -19,6 +23,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
     if (project) {
       document.addEventListener('keydown', handleKeyDown);
       document.body.style.overflow = 'hidden';
+      setSelectedImageIndex(0);
     }
     return () => {
       document.removeEventListener('keydown', handleKeyDown);
@@ -56,7 +61,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             {/* Eyebrow & Category */}
             <div className="flex flex-wrap items-center gap-2 mb-3 pe-12">
               <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-specimen/5 dark:bg-specimen/10 text-specimen border border-specimen/30 flex items-center gap-1">
-                <FlaskConical className="size-3" /> {project.category}
+                <Atom className="size-3 text-specimen animate-[spin_12s_linear_infinite]" /> {project.category}
               </span>
               <span className="text-xs text-ink/40 font-mono">
                 {project.timeline}
@@ -111,6 +116,35 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
               </div>
             )}
 
+            {/* GitHub Repository Banner if present and no paper */}
+            {project.links?.github && !project.links?.paper && (
+              <div className="mt-6 p-4 rounded-none border-l-4 border-specimen bg-specimen/10 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="size-10 rounded-sm bg-specimen text-white flex items-center justify-center shrink-0 shadow-sm">
+                    <GithubIcon className="size-5" />
+                  </div>
+                  <div>
+                    <span className="text-xs font-bold uppercase tracking-wider text-specimen block">
+                      Source Repository Available
+                    </span>
+                    <span className="text-xs text-ink/70 dark:text-ink/60">
+                      Production Python ML pipeline, feature engineering scripts & Jupyter notebooks
+                    </span>
+                  </div>
+                </div>
+                <motion.a
+                  {...spring.press}
+                  href={project.links.github}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="min-h-[44px] inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-sm text-xs font-bold bg-[#080812] dark:bg-white text-white dark:text-[#080812] hover:opacity-90 transition-all shrink-0 shadow-sm focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
+                >
+                  <ExternalLink className="size-3.5" />
+                  <span>Open GitHub Repository</span>
+                </motion.a>
+              </div>
+            )}
+
             {/* Problem & Solution Grid */}
             <div className="mt-6 space-y-4">
               <div className="p-4 rounded-none border-l-2 border-specimen/20 bg-ink/15 dark:bg-ink/20 border-t border-r border-b border-t-transparent border-r-transparent border-b-transparent">
@@ -143,6 +177,60 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                 </p>
               </div>
             </div>
+
+            {/* Visual Artifacts & Empirical Telemetry Figures if present */}
+            {project.images && project.images.length > 0 && (
+              <div className="mt-6 p-4 rounded-none bg-black/40 border border-ink/15">
+                <div className="flex flex-wrap items-center justify-between gap-2 mb-3">
+                  <h4 className="text-xs font-bold uppercase tracking-wider text-specimen flex items-center gap-1.5">
+                    <Maximize2 className="size-3.5 text-specimen" />
+                    Empirical Figures & Model Telemetry
+                  </h4>
+                  <span className="text-[10px] font-mono text-white/40">
+                    Offline Preserved · 0% Server Sleep Risk
+                  </span>
+                </div>
+
+                <div className="border border-white/10 rounded-none bg-black/80 p-2 flex flex-col items-center justify-center overflow-hidden">
+                  <img
+                    src={project.images[selectedImageIndex].url}
+                    alt={project.images[selectedImageIndex].title}
+                    className="max-h-[320px] w-auto max-w-full object-contain rounded-none"
+                  />
+                  <div className="mt-2 text-center px-2">
+                    <p className="text-xs font-mono font-bold text-white">
+                      {project.images[selectedImageIndex].title}
+                    </p>
+                    <p className="text-[11px] font-mono text-white/60 mt-0.5">
+                      {project.images[selectedImageIndex].caption}
+                    </p>
+                  </div>
+                </div>
+
+                {project.images.length > 1 && (
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-2 mt-3">
+                    {project.images.map((img, i) => (
+                      <button
+                        key={i}
+                        type="button"
+                        onClick={() => setSelectedImageIndex(i)}
+                        className={cn(
+                          "p-1.5 border text-left rounded-none transition-all flex flex-col gap-1",
+                          selectedImageIndex === i
+                            ? "border-specimen bg-specimen/15"
+                            : "border-white/10 bg-white/[0.02] hover:border-white/25"
+                        )}
+                      >
+                        <img src={img.url} alt={img.title} className="h-12 w-full object-cover rounded-none" />
+                        <span className="text-[10px] font-mono truncate text-white/80">
+                          {img.title}
+                        </span>
+                      </button>
+                    ))}
+                  </div>
+                )}
+              </div>
+            )}
 
             {/* Highlights & Key Outcomes */}
             <div className="mt-6">

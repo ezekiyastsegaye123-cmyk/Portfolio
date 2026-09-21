@@ -26,6 +26,11 @@ export interface Project {
   highlights: string[];
   featured: boolean;
   advisor?: string;
+  images?: {
+    url: string;
+    title: string;
+    caption: string;
+  }[];
 }
 
 export interface Activity {
@@ -86,7 +91,7 @@ export const profileData: ProfileData = {
     motto: "From Atoms to Algorithms: Engineering Computational Solutions for Physical Realities",
     bio: "Passionate computational researcher and software builder bridging fundamental chemical phenomena with algorithmic optimization. Dedicated to applying kinetic modeling, thermodynamics, and machine learning to energy conversion, ecological intelligence, and educational equity.",
     location: "Addis Ababa, Ethiopia",
-    email: "ezekiyastsegaye123@gmail.com",
+    email: "hezekiah3279@gmail.com",
     github: "https://github.com/ezekiyastsegaye123-cmyk",
     futurePlan: "Scientific Researcher, Bachelors",
   },
@@ -205,6 +210,31 @@ export const profileData: ProfileData = {
         "Selected as the rigorous Capstone Project required to graduate from the selective EGATE program.",
         "Performed end-to-end data cleaning, missing-value imputation, and feature engineering across heterogeneous astronomical and meteorological datasets.",
         "Delivered actionable predictions intended to safeguard water security ('Maji Alert').",
+      ],
+      links: {
+        github: "https://github.com/ezekiyastsegaye123-cmyk/Fradscr",
+      },
+      images: [
+        {
+          url: "/images/fradscr/data_pipeline_overview.png",
+          title: "End-to-End Pipeline & Paleoclimatic RWI Correlation",
+          caption: "SPEI Ground Truth (1901–2014), class distribution, and Schwabe solar cycle teleconnection to Ethiopian highland tree-ring growth memory.",
+        },
+        {
+          url: "/images/fradscr/forward_forecast_2025_2035.png",
+          title: "11-Year Operational Decadal Forecast (2025–2035)",
+          caption: "100 Monte Carlo draws/year tracking Solar Cycle 25→26 minimum and operational borehole dispatch thresholds.",
+        },
+        {
+          url: "/images/fradscr/holdout_confusion_matrix.png",
+          title: "Zero-Leakage Spatial Holdout Confusion Matrix",
+          caption: "Evaluated on Debrebirkan Selassie (eth001) independent 106-year test horizon.",
+        },
+        {
+          url: "/images/fradscr/feature_importance_dual.png",
+          title: "Dual-Model Feature Importance",
+          caption: "Random Forest Gini importance vs. XGBoost gain metrics across heliophysics and dendrochronology inputs.",
+        },
       ],
       featured: true,
     },

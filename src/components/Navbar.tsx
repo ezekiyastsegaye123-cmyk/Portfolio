@@ -30,7 +30,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, onPrin
           className="flex items-center gap-2 group p-1 -m-1 focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
         >
           <div className="size-10 rounded-none bg-ink text-paper flex items-center justify-center font-display font-bold text-lg shadow-sm transition-transform group-hover:scale-105 border border-specimen/30">
-            <FlaskConical className="size-5 text-specimen" />
+            <Atom className="size-5 text-specimen animate-[spin_20s_linear_infinite]" />
           </div>
           <div>
             <div className="flex items-center gap-2">
