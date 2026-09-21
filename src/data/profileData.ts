@@ -57,6 +57,7 @@ export interface ProfileData {
     email: string;
     github: string;
     futurePlan: string;
+    website?: string;
   };
   education: {
     institution: string;
@@ -94,6 +95,7 @@ export const profileData: ProfileData = {
     email: "hezekiah3279@gmail.com",
     github: "https://github.com/ezekiyastsegaye123-cmyk",
     futurePlan: "Scientific Researcher, Bachelors",
+    website: "https://ezekiyastsegaye.tech",
   },
   education: {
     institution: "St. John Baptist De La Salle Catholic School",
