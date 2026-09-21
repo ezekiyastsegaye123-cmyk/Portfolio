@@ -22,7 +22,7 @@ export const Footer: React.FC = () => {
                 {profileData.personal.fullName} ({profileData.personal.preferredName})
               </div>
               <div className="text-[11px] text-academic-500">
-                Common Application Supplement · Fall 2025 / 2026 Admissions
+                Common Application Supplement · Fall 2026 / 2027 Admissions
               </div>
             </div>
           </div>

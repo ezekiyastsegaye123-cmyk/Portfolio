@@ -16,7 +16,7 @@ export const Hero: React.FC = () => {
         + 09°01'55"N 38°44'49"E
       </div>
       <div className="absolute top-3 right-4 text-academic-400 dark:text-academic-600 font-mono text-xs select-none pointer-events-none hidden sm:block">
-        DOCKET № ET-2025/2026 +
+        DOCKET № ET-2026/2027 +
       </div>
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -26,7 +26,7 @@ export const Hero: React.FC = () => {
           <div className="flex items-center gap-2">
             <span className="size-2 rounded-full bg-emerald-500 animate-pulse motion-reduce:animate-none" />
             <span className="font-semibold text-academic-900 dark:text-academic-100 uppercase tracking-wider">
-              Common App Dossier · Fall 2025 / 2026 Admissions
+              Common App Dossier · Fall 2026 / 2027 Admissions
             </span>
           </div>
           <div className="flex items-center gap-4">
@@ -191,8 +191,10 @@ export const Hero: React.FC = () => {
                   <h3 className="font-serif font-bold text-base text-academic-100 mt-0.5 leading-snug">
                     Integrated Theoretical Framework for Byproduct Reintegration in Closed-Loop Pyrolysis Systems
                   </h3>
-                  <div className="text-xs font-mono text-amber-400 mt-1">
-                    Lead Author: Ezekiyas (Hezekiah) Tsegaye
+                  <div className="text-xs font-mono text-amber-400 mt-1 flex flex-wrap items-center gap-1.5">
+                    <span>Lead Author: Ezekiyas (Hezekiah) Tsegaye</span>
+                    <span className="text-academic-500">·</span>
+                    <span className="text-emerald-400 font-semibold">Advised by Chemical Society of Ethiopia (CSE)</span>
                   </div>
                 </div>
 

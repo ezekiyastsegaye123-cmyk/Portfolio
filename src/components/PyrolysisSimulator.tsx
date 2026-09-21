@@ -88,12 +88,15 @@ export const PyrolysisSimulator: React.FC = () => {
             <Flame className="size-4 animate-pulse" />
           </div>
           <div>
-            <div className="flex items-center gap-2">
+            <div className="flex flex-wrap items-center gap-2">
               <span className="text-xs font-mono font-bold tracking-wider uppercase text-amber-400">
                 Interactive Chemical Reactor Instrument
               </span>
               <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30 font-mono">
                 FIG. 2 · MODEL
+              </span>
+              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-mono">
+                ADVISED BY CHEMICAL SOCIETY OF ETHIOPIA (CSE)
               </span>
             </div>
             <h4 className="font-serif font-bold text-base text-academic-100">

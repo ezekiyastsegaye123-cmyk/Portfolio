@@ -42,7 +42,7 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, onPrin
               </span>
             </div>
             <p className="text-[11px] font-mono text-academic-500">
-              Common App Admissions Portfolio · Rank 5/250
+              Common App Admissions Portfolio · Fall 2026 / 2027 · Rank 5/250
             </p>
           </div>
         </a>

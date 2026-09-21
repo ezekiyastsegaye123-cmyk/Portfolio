@@ -71,6 +71,13 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
             <h3 id="project-modal-title" className="text-2xl sm:text-3xl font-serif font-bold text-academic-950 dark:text-white leading-snug tracking-[-0.01em]">
               {project.title}
             </h3>
+
+            {project.advisor && (
+              <div className="mt-2.5 inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-500/10 text-emerald-800 dark:text-emerald-300 border border-emerald-500/30 text-xs font-mono font-bold">
+                <span>TECHNICAL ADVISORY: {project.advisor}</span>
+              </div>
+            )}
+
             <p className="mt-2 text-sm sm:text-base text-amber-800 dark:text-amber-200/90 font-medium">
               {project.subtitle}
             </p>
@@ -87,7 +94,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
                       Original Research Report Available
                     </span>
                     <span className="text-xs text-academic-600 dark:text-academic-300">
-                      Full 16-page LaTeX theoretical framework & heat/mass balance calculations
+                      Full 16-page LaTeX theoretical framework · Advised by Chemical Society of Ethiopia (CSE)
                     </span>
                   </div>
                 </div>

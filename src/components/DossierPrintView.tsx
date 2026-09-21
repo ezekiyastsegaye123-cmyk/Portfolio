@@ -24,7 +24,7 @@ export const DossierPrintView: React.FC = () => {
           <p>{personal.email}</p>
           <p>{personal.location}</p>
           <p>{personal.github}</p>
-          <p className="font-bold text-black mt-1">Common Application Supplement</p>
+          <p className="font-bold text-black mt-1">Common Application Supplement · Fall 2026 / 2027</p>
         </div>
       </div>
 
@@ -76,6 +76,11 @@ export const DossierPrintView: React.FC = () => {
                 <span>{p.title} · <span className="font-normal italic text-gray-700">{p.role}</span></span>
                 <span className="text-gray-600 font-mono text-[10px]">{p.timeline}</span>
               </div>
+              {p.advisor && (
+                <div className="text-[10px] font-semibold text-gray-800">
+                  Technical Advisory: {p.advisor}
+                </div>
+              )}
               <p className="text-gray-800 text-[10.5px] mt-0.5">
                 <span className="font-semibold">Core:</span> {p.subtitle}
               </p>

@@ -25,6 +25,7 @@ export interface Project {
   };
   highlights: string[];
   featured: boolean;
+  advisor?: string;
 }
 
 export interface Activity {
@@ -159,7 +160,8 @@ export const profileData: ProfileData = {
     {
       id: "pyrolysis-research",
       title: "Integrated Theoretical Framework for Byproduct Reintegration in Closed-Loop Pyrolysis Systems",
-      role: "Lead Author & Researcher",
+      role: "Lead Author & Solo Researcher (Advised by Chemical Society of Ethiopia)",
+      advisor: "Chemical Society of Ethiopia (CSE)",
       category: "Computational Chemistry",
       timeline: "2024 – Present",
       subtitle: "Autothermal biorefinery architecture achieving 73.6% thermal efficiency through kinetic modeling, char catalysis, and syngas recirculation.",
@@ -176,6 +178,7 @@ export const profileData: ProfileData = {
         paper: "/pyrolysis-framework.pdf",
       },
       highlights: [
+        "Theoretical framework advised by the Chemical Society of Ethiopia (CSE).",
         "Modeled macromolecular cleavage kinetics: Hemicellulose diffusion (200–350°C), Cellulose transglycosylation (300–400°C), and Lignin aryl-ether β-O-4 scission (250–900°C).",
         "In Situ Catalysis: Integrated char-bound alkali and alkaline earth metals (AAEMs) for hot vapor cracking at 700–900°C into clean H2, CO, and CH4.",
         "Syngas Recirculation: Reintegrated reactive H2 and CO atmospheres to drive in situ hydrodeoxygenation (HDO), upgrading bio-oil into stable aromatic fuels.",

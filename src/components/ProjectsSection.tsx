@@ -115,8 +115,10 @@ export const ProjectsSection: React.FC = () => {
                   Integrated Theoretical Framework for Byproduct Reintegration in Closed-Loop Pyrolysis Systems
                 </h3>
                 
-                <div className="mt-2 text-sm font-mono text-academic-600 dark:text-academic-300 flex items-center gap-2">
+                <div className="mt-2 text-sm font-mono text-academic-600 dark:text-academic-300 flex flex-wrap items-center gap-2">
                   <span className="text-amber-600 dark:text-amber-400 font-bold">Role:</span> Lead Author & Solo Theoretical Researcher
+                  <span className="text-academic-300 dark:text-academic-700">|</span>
+                  <span className="text-emerald-600 dark:text-emerald-400 font-bold">Technical Advisory:</span> Chemical Society of Ethiopia (CSE)
                   <span className="text-academic-300 dark:text-academic-700">|</span>
                   <span>16-Page Research Report (272 KB LaTeX)</span>
                 </div>
@@ -171,7 +173,7 @@ export const ProjectsSection: React.FC = () => {
                 
                 <div className="flex items-center gap-2 text-xs font-mono text-academic-500">
                   <span className="size-2 rounded-full bg-emerald-500" />
-                  <span>Verified 16-Page Research PDF ready for faculty & admissions review</span>
+                  <span>Verified 16-Page Research PDF · Advised by Chemical Society of Ethiopia (CSE)</span>
                 </div>
 
                 <div className="flex flex-wrap items-center gap-3">
