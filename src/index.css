@@ -5,6 +5,7 @@
 @layer base {
   html {
     font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    scroll-padding-top: 5rem;
   }
 
   /* Accessibility: Prefers reduced motion */
@@ -19,12 +20,64 @@
     }
   }
 
-  /* Accessible focus indicators */
+  /* Accessible focus indicators with physical precision */
   a:focus-visible,
-  button:focus-visible {
+  button:focus-visible,
+  input:focus-visible {
     outline: 2px solid theme('colors.amber.600');
     outline-offset: 2px;
   }
+}
+
+/* Scientific & Archival Graph Paper Texture (Human Engineered, Non-AI) */
+.archival-grid {
+  background-image: 
+    linear-gradient(to right, rgba(217, 119, 6, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(217, 119, 6, 0.04) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+.dark .archival-grid {
+  background-image: 
+    linear-gradient(to right, rgba(251, 191, 36, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(251, 191, 36, 0.03) 1px, transparent 1px);
+  background-size: 32px 32px;
+}
+
+/* Fine Laboratory Millimeter Grid for Technical Displays */
+.millimeter-grid {
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.08) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.08) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+.dark .millimeter-grid {
+  background-image: 
+    linear-gradient(to right, rgba(148, 163, 184, 0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(148, 163, 184, 0.05) 1px, transparent 1px);
+  background-size: 8px 8px;
+}
+
+/* Technical Ruling Caliper Line */
+.caliper-line {
+  position: relative;
+}
+.caliper-line::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background: repeating-linear-gradient(
+    90deg,
+    currentColor 0,
+    currentColor 6px,
+    transparent 6px,
+    transparent 12px
+  );
+  opacity: 0.25;
 }
 
 /* Animations */
