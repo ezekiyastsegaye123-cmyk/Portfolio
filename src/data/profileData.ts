@@ -1,8 +1,3 @@
-export interface Course {
-  semester1: string;
-  semester2: string;
-}
-
 export interface Honor {
   title: string;
   scope: 'International' | 'National' | 'State/Regional' | 'School';
@@ -70,7 +65,6 @@ export interface ProfileData {
     gpa: string;
     gpaScale: string;
     gpaType: string;
-    courses: Course[];
     honors: Honor[];
   };
   stats: {
@@ -89,7 +83,7 @@ export const profileData: ProfileData = {
     intendedMajor: "Chemistry with Computer Science",
     concentration: "Computational Chemistry, Reaction Modeling & Scientific Machine Learning",
     motto: "From Atoms to Algorithms: Engineering Computational Solutions for Physical Realities",
-    bio: "Passionate computational researcher and software builder bridging fundamental chemical phenomena with algorithmic optimization. Dedicated to applying machine learning and high-efficiency systems to energy conversion, ecological intelligence, and educational equity.",
+    bio: "Passionate computational researcher and software builder bridging fundamental chemical phenomena with algorithmic optimization. Dedicated to applying kinetic modeling, thermodynamics, and machine learning to energy conversion, ecological intelligence, and educational equity.",
     location: "Addis Ababa, Ethiopia",
     email: "ezekiyastsegaye123@gmail.com",
     github: "https://github.com/ezekiyastsegaye123-cmyk",
@@ -108,15 +102,6 @@ export const profileData: ProfileData = {
     gpa: "3.93",
     gpaScale: "4.0",
     gpaType: "Unweighted",
-    courses: [
-      { semester1: "ENG - English (REG)", semester2: "ENG - English (REG)" },
-      { semester1: "MATH - Math (REG)", semester2: "MATH - Math (REG)" },
-      { semester1: "CHEM - Chemistry (REG)", semester2: "CHEM - Chemistry (REG)" },
-      { semester1: "PHYS - Physics (REG)", semester2: "PHYS - Physics (REG)" },
-      { semester1: "BIOL - Biology (REG)", semester2: "BIOL - Biology (REG)" },
-      { semester1: "OTH/ELE - Information Technology (REG)", semester2: "OTH/ELE - Information Technology (REG)" },
-      { semester1: "OTH/ELE - Agriculture (REG)", semester2: "OTH/ELE - Agriculture (REG)" },
-    ],
     honors: [
       {
         title: "National Examination Outstanding Achiever",
@@ -173,24 +158,27 @@ export const profileData: ProfileData = {
   projects: [
     {
       id: "pyrolysis-research",
-      title: "Independent Pyrolysis Research: Waste-to-Energy",
-      role: "Founder & Lead Researcher",
+      title: "Integrated Theoretical Framework for Byproduct Reintegration in Closed-Loop Pyrolysis Systems",
+      role: "Lead Author & Researcher",
       category: "Computational Chemistry",
       timeline: "2024 – Present",
-      subtitle: "Designing thermal decomposition protocols and training ML surrogate models to optimize biochar & syngas yields.",
-      problem: "Traditional municipal and biomass waste disposal in developing regions contributes severely to greenhouse emissions and soil degradation, while conventional pyrolysis reactors suffer from sub-optimal yield kinetics without expensive continuous sensors.",
-      solution: "Initiated a self-directed experimental and computational investigation into the thermochemical conversion of organic waste into combustible syngas and high-surface-area biochar. Developing predictive machine-learning surrogate models to predict reaction kinetic barriers and energy output based on feedstock moisture, reactor temperature, and residence time.",
-      computationalAngle: "Synthesizing principles from chemical thermodynamics with regression and ensemble algorithms (Scikit-Learn, XGBoost) acquired through advanced fellowships (EGATE and Digital Skillup Africa).",
-      techStack: ["Chemical Thermodynamics", "Python", "Scikit-learn", "Pandas", "NumPy", "Thermal Reactor Modeling"],
+      subtitle: "Autothermal biorefinery architecture achieving 73.6% thermal efficiency through kinetic modeling, char catalysis, and syngas recirculation.",
+      problem: "Conventional open-loop waste-to-energy pyrolysis systems suffer from significant external thermal energy requirements (0.5–1.5 MJ/kg endothermic primary decomposition), unstable oxygenated bio-oil fractions, and inefficient downstream tar contamination.",
+      solution: "Formulated an integrated theoretical framework establishing an autothermal closed-loop circular biorefinery. Synthesizes lumped kinetic mechanisms (applying Semyonov's chain-reaction principles) to model the macromolecular decomposition of lignocellulosic biomass (hemicellulose, crystalline cellulose, and three-dimensional lignin). Demonstrates that recirculating solid heat carriers (5,940 kg ash/carrier per 1,000 kg feed) fulfills endothermic enthalpy requirements to achieve 73.6% thermal efficiency.",
+      computationalAngle: "Derived thermodynamic mass and heat balances, modeled vapor residence time dynamics (<2–5s fast pyrolysis window), and developed fuzzy logic self-tuning PID control algorithms reducing overshoot by 48% across non-linear feedback loops.",
+      techStack: ["Chemical Thermodynamics", "Lumped Kinetic Modeling", "Hydrodeoxygenation (HDO)", "Fuzzy Logic PID Control", "Python", "Scikit-Learn"],
       metrics: [
-        "Self-directed waste-to-energy experimental protocol",
-        "Integration of EGATE & DSA machine learning methodologies",
-        "Kinetic simulation targeting syngas yield optimization",
+        "73.6% System-Level Thermal Efficiency",
+        "Autothermal Energy Autonomy via 10–15% Byproduct Reintegration",
+        "48% Reduction in Dynamic Overshoot via Fuzzy Self-Tuning PID",
       ],
+      links: {
+        paper: "/pyrolysis-framework.pdf",
+      },
       highlights: [
-        "Formulated chemical reaction equations modeling non-oxidative thermal decomposition of lignocellulosic biomass.",
-        "Constructing a dataset of feedstock compositions (cellulose, hemicellulose, lignin ratios) to train predictive temperature-gradient models.",
-        "Synthesizes chemical laboratory practice with computational parameter optimization.",
+        "Modeled macromolecular cleavage kinetics: Hemicellulose diffusion (200–350°C), Cellulose transglycosylation (300–400°C), and Lignin aryl-ether β-O-4 scission (250–900°C).",
+        "In Situ Catalysis: Integrated char-bound alkali and alkaline earth metals (AAEMs) for hot vapor cracking at 700–900°C into clean H2, CO, and CH4.",
+        "Syngas Recirculation: Reintegrated reactive H2 and CO atmospheres to drive in situ hydrodeoxygenation (HDO), upgrading bio-oil into stable aromatic fuels.",
       ],
       featured: true,
     },
@@ -224,7 +212,7 @@ export const profileData: ProfileData = {
       category: "EdTech & Systems",
       timeline: "2024",
       subtitle: "Ultra-low-latency multiplayer interactive learning platform engineered for 100+ concurrent students.",
-      problem: "Commercial classroom response tools (like Kahoot) require expensive enterprise subscriptions, experience latency bottlenecks over crowded school Wi-Fi, and fail to provide granular distribution analytics on local smartboards.",
+      problem: "Commercial classroom response tools require expensive subscriptions, experience latency bottlenecks over crowded school Wi-Fi, and fail to provide granular distribution analytics on local smartboards.",
       solution: "Engineered an open, high-concurrency real-time multiplayer platform capable of serving over 100 concurrent students from a single lightweight server with sub-5ms state synchronization.",
       computationalAngle: "Built a native RFC 6455 WebSocket hub in the pure Python standard library with zero third-party framework overhead, coupled with multi-threaded HTTP dispatch and WebRTC fallback layers.",
       techStack: ["Python Standard Library", "RFC 6455 WebSockets", "Multi-Threaded HTTP", "JavaScript", "WebRTC / PeerJS"],
@@ -236,7 +224,7 @@ export const profileData: ProfileData = {
       highlights: [
         "Architected custom room subscription management with zero memory leaks across sustained multi-round quiz sessions.",
         "Implemented real-time classroom orchestration: teacher pause/resume timers, instant student submission counters, and animated response histograms.",
-        "Eliminated all external software licenses, allowing high school classrooms with limited connectivity to run engaging STEM quizzes locally.",
+        "Eliminated external software licenses, allowing classrooms with limited connectivity to run engaging STEM quizzes locally.",
       ],
       featured: true,
     },

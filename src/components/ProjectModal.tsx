@@ -1,5 +1,5 @@
 import React from 'react';
-import { X, ExternalLink, CheckCircle2, Cpu, FlaskConical, Sparkles, Layers } from 'lucide-react';
+import { X, ExternalLink, FileText, CheckCircle2, Cpu, FlaskConical, Sparkles, Download, Layers } from 'lucide-react';
 import { Project } from '../data/profileData';
 
 interface ProjectModalProps {
@@ -11,7 +11,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
   if (!project) return null;
 
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-academic-950/70 backdrop-blur-sm animate-fadeIn">
+    <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto bg-academic-950/75 backdrop-blur-sm animate-fadeIn">
       <div 
         className="relative w-full max-w-3xl max-h-[90vh] overflow-y-auto rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-2xl p-6 sm:p-8"
         onClick={(e) => e.stopPropagation()}
@@ -30,7 +30,7 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
           <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/50 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1">
             <FlaskConical className="w-3 h-3" /> {project.category}
           </span>
-          <span className="text-xs text-academic-500">
+          <span className="text-xs text-academic-500 font-mono">
             {project.timeline}
           </span>
           <span className="text-academic-300 dark:text-academic-700">·</span>
@@ -46,6 +46,34 @@ export const ProjectModal: React.FC<ProjectModalProps> = ({ project, onClose }) 
         <p className="mt-2 text-sm sm:text-base text-amber-800 dark:text-amber-200/90 font-medium">
           {project.subtitle}
         </p>
+
+        {/* Technical Paper Download Banner if present */}
+        {project.links?.paper && (
+          <div className="mt-5 p-4 rounded-xl bg-gradient-to-r from-amber-500/10 via-amber-500/5 to-transparent dark:from-amber-950/40 dark:via-amber-900/20 dark:to-transparent border border-amber-300 dark:border-amber-800/80 flex flex-col sm:flex-row items-start sm:items-center justify-between gap-3">
+            <div className="flex items-center gap-3">
+              <div className="w-10 h-10 rounded-lg bg-amber-600 text-white flex items-center justify-center shrink-0 shadow-sm">
+                <FileText className="w-5 h-5" />
+              </div>
+              <div>
+                <span className="text-xs font-bold uppercase tracking-wider text-amber-900 dark:text-amber-300 block">
+                  Original Research Report Available
+                </span>
+                <span className="text-xs text-academic-600 dark:text-academic-300">
+                  Full 10-page theoretical framework & heat/mass balance calculations
+                </span>
+              </div>
+            </div>
+            <a
+              href={project.links.paper}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="inline-flex items-center gap-1.5 px-4 py-2 rounded-lg text-xs font-bold bg-academic-950 dark:bg-white text-white dark:text-academic-950 hover:bg-academic-800 dark:hover:bg-academic-100 transition-all shrink-0 shadow-sm"
+            >
+              <Download className="w-3.5 h-3.5 text-amber-400 dark:text-amber-600" />
+              <span>Read Full Paper (PDF)</span>
+            </a>
+          </div>
+        )}
 
         {/* Problem & Solution Grid */}
         <div className="mt-6 space-y-4">

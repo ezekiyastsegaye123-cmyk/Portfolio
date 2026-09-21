@@ -1,9 +1,16 @@
 import React from 'react';
-import { Award, BookOpen, GraduationCap, CheckCircle2, ShieldCheck, Globe2, Building2 } from 'lucide-react';
+import { Award, GraduationCap, ShieldCheck, CheckCircle2, Sparkles, BookCheck } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export const AcademicsSection: React.FC = () => {
   const { education } = profileData;
+
+  const coreCompetencies = [
+    { area: "Physical & Analytical Chemistry", detail: "Stoichiometry, Reaction Thermodynamics, Reaction Enthalpy, Titration Protocols" },
+    { area: "Calculus & Pure Mathematics", detail: "Differential & Integral Calculus, Kinetic Rate Laws, Optimization Problems" },
+    { area: "Computational & Algorithmic Science", detail: "Python Scientific Stack (NumPy, Pandas, Scikit-learn), C++ Memory Management" },
+    { area: "Chemical Kinetics & Thermodynamics", detail: "Macromolecular Decomposition, Non-Oxidative Pyrolysis, Arrhenius Parameters" },
+  ];
 
   return (
     <section id="academics" className="py-16 md:py-24 border-b border-academic-200 dark:border-academic-800">
@@ -15,118 +22,111 @@ export const AcademicsSection: React.FC = () => {
             Official Common App Record
           </span>
           <h2 className="text-3xl sm:text-4xl font-serif font-bold text-academic-950 dark:text-white mt-1">
-            Academics, Rigor & Honors
+            Academic Distinction & Honors
           </h2>
           <p className="mt-3 text-academic-600 dark:text-academic-300 text-sm sm:text-base leading-relaxed">
-            Consistent top-tier scholarship at St. John Baptist De La Salle Catholic School, demonstrating sustained academic distinction across rigorous physical science and computational coursework.
+            Sustained top-tier scholarship at St. John Baptist De La Salle Catholic School, maintaining a 3.93 unweighted GPA, ranking in the top 2.0% of the graduating class, and earning international & national scientific accolades.
           </p>
         </div>
 
-        {/* Top Grid: Institution Record + Coursework */}
+        {/* Two-Column Academic Foundation Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 mb-12">
           
-          {/* Institution & Stats Card (5 cols) */}
-          <div className="lg:col-span-5 p-6 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between">
+          {/* Institution & Quantitative Record (7 cols) */}
+          <div className="lg:col-span-7 p-6 sm:p-8 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between">
             <div>
-              <div className="flex items-center justify-between">
+              <div className="flex flex-wrap items-center justify-between gap-2">
                 <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-academic-100 dark:bg-academic-800 text-academic-700 dark:text-academic-300 border border-academic-300 dark:border-academic-700">
                   {education.type}
                 </span>
                 <span className="text-xs text-academic-500">{education.dates}</span>
               </div>
 
-              <h3 className="text-xl font-serif font-bold text-academic-900 dark:text-white mt-4">
+              <h3 className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-4">
                 {education.institution}
               </h3>
               <p className="text-xs text-academic-500 dark:text-academic-400 mt-1">
                 {education.location} · {education.status}
               </p>
 
-              <div className="mt-6 space-y-4">
+              <div className="mt-6 grid grid-cols-1 sm:grid-cols-3 gap-4">
+                {/* Class Rank */}
                 <div className="p-4 rounded-xl bg-academic-50 dark:bg-academic-800/50 border border-academic-200 dark:border-academic-700/60">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-academic-600 dark:text-academic-300">
-                      Unweighted Class Rank
-                    </span>
-                    <span className="text-sm font-bold text-amber-700 dark:text-amber-400">
-                      Top 2.0%
-                    </span>
-                  </div>
-                  <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-0.5">
+                  <span className="text-xs font-semibold text-academic-500 dark:text-academic-400 block">
+                    Class Standing
+                  </span>
+                  <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-1">
                     {education.rank} / {education.rankTotal}
                   </div>
-                  <p className="text-xs text-academic-500 mt-0.5">
-                    {education.rankContext}
-                  </p>
+                  <span className="text-xs font-semibold text-amber-700 dark:text-amber-400 mt-0.5 block">
+                    Top 2.0% Unweighted
+                  </span>
                 </div>
 
+                {/* Cumulative GPA */}
                 <div className="p-4 rounded-xl bg-academic-50 dark:bg-academic-800/50 border border-academic-200 dark:border-academic-700/60">
-                  <div className="flex items-center justify-between">
-                    <span className="text-xs font-semibold text-academic-600 dark:text-academic-300">
-                      Cumulative GPA (Unweighted)
-                    </span>
-                    <span className="text-xs font-bold px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950/60 text-emerald-800 dark:text-emerald-300">
-                      High Honor Roll
-                    </span>
-                  </div>
-                  <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-0.5">
+                  <span className="text-xs font-semibold text-academic-500 dark:text-academic-400 block">
+                    Cumulative GPA
+                  </span>
+                  <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-1">
                     {education.gpa} / {education.gpaScale}
                   </div>
-                  <p className="text-xs text-academic-500 mt-0.5">
-                    Maintained across all 4 years (Grades 9–12)
-                  </p>
+                  <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 mt-0.5 block">
+                    Unweighted Honor Roll
+                  </span>
+                </div>
+
+                {/* National Exam */}
+                <div className="p-4 rounded-xl bg-academic-50 dark:bg-academic-800/50 border border-academic-200 dark:border-academic-700/60">
+                  <span className="text-xs font-semibold text-academic-500 dark:text-academic-400 block">
+                    National Exam
+                  </span>
+                  <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-1">
+                    558 / 600
+                  </div>
+                  <span className="text-xs font-semibold text-purple-700 dark:text-purple-400 mt-0.5 block">
+                    Outstanding Achiever
+                  </span>
                 </div>
               </div>
             </div>
 
             <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 flex items-center gap-2 text-xs text-academic-500 dark:text-academic-400">
-              <ShieldCheck className="w-4 h-4 text-emerald-600" />
-              <span>Verified school transcript & Common App progression</span>
+              <ShieldCheck className="w-4 h-4 text-emerald-600 shrink-0" />
+              <span>Verified school transcript · Official Secondary Leaving Examination Certificate</span>
             </div>
           </div>
 
-          {/* Current / Most Recent Year Courses (7 cols) */}
-          <div className="lg:col-span-7 p-6 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm">
-            <div className="flex items-center justify-between mb-4">
-              <div className="flex items-center gap-2">
-                <BookOpen className="w-4 h-4 text-amber-600 dark:text-amber-400" />
+          {/* Academic & Scientific Rigor (5 cols) */}
+          <div className="lg:col-span-5 p-6 sm:p-8 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between">
+            <div>
+              <div className="flex items-center gap-2 mb-4">
+                <BookCheck className="w-5 h-5 text-amber-600 dark:text-amber-400" />
                 <h3 className="font-serif font-bold text-lg text-academic-950 dark:text-white">
-                  Senior Year Academic Coursework
+                  Academic Focus & Competencies
                 </h3>
               </div>
-              <span className="text-xs text-academic-500">Regular Curriculum (REG)</span>
+              <p className="text-xs sm:text-sm text-academic-600 dark:text-academic-300 leading-relaxed mb-4">
+                High-rigor preparation across foundational Physical Sciences, Pure Mathematics, and Computational Logic:
+              </p>
+
+              <div className="space-y-3">
+                {coreCompetencies.map((comp, idx) => (
+                  <div key={idx} className="p-3 rounded-xl bg-academic-50 dark:bg-academic-800/40 border border-academic-200/80 dark:border-academic-700/50">
+                    <div className="text-xs font-bold text-academic-900 dark:text-white flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                      {comp.area}
+                    </div>
+                    <div className="text-[11px] text-academic-600 dark:text-academic-300 mt-0.5 pl-3">
+                      {comp.detail}
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
 
-            <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs sm:text-sm">
-                <thead>
-                  <tr className="border-b border-academic-200 dark:border-academic-800 text-academic-500 dark:text-academic-400 font-semibold">
-                    <th className="pb-3 pl-2">Subject / Domain</th>
-                    <th className="pb-3">First Semester</th>
-                    <th className="pb-3 pr-2">Second Semester</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-academic-100 dark:divide-academic-800/60">
-                  {education.courses.map((course, idx) => (
-                    <tr key={idx} className="hover:bg-academic-50 dark:hover:bg-academic-800/30 transition-colors">
-                      <td className="py-2.5 pl-2 font-medium text-academic-900 dark:text-white flex items-center gap-1.5">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
-                        {course.semester1.split(' - ')[1] || course.semester1}
-                      </td>
-                      <td className="py-2.5 text-academic-600 dark:text-academic-300">
-                        {course.semester1}
-                      </td>
-                      <td className="py-2.5 pr-2 text-academic-600 dark:text-academic-300">
-                        {course.semester2}
-                      </td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
-
-            <div className="mt-4 p-3 rounded-lg bg-amber-50/70 dark:bg-amber-950/30 border border-amber-200/60 dark:border-amber-900/40 text-xs text-amber-900 dark:text-amber-200">
-              <span className="font-semibold">Curricular Breadth:</span> Complete immersion across Physical Sciences (Chemistry & Physics), Biological Sciences, Pure Mathematics, and Information Technology.
+            <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 text-[11px] text-academic-500 dark:text-academic-400">
+              Direct application of empirical chemistry concepts into computational modeling & kinetic simulation.
             </div>
           </div>
 
@@ -170,7 +170,7 @@ export const AcademicsSection: React.FC = () => {
                       </span>
                     </div>
 
-                    <h4 className="text-base font-serif font-bold text-academic-900 dark:text-white">
+                    <h4 className="text-base font-serif font-bold text-academic-950 dark:text-white">
                       {honor.title}
                     </h4>
 

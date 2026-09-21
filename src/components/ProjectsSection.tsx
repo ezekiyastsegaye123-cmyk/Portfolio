@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { FlaskConical, Cpu, ArrowUpRight, CheckCircle, Sparkles, Filter } from 'lucide-react';
+import { FlaskConical, Cpu, ArrowUpRight, CheckCircle, Sparkles, Filter, FileText } from 'lucide-react';
 import { profileData, Project } from '../data/profileData';
 import { ProjectModal } from './ProjectModal';
 
@@ -28,7 +28,7 @@ export const ProjectsSection: React.FC = () => {
               Research & Computational Projects
             </h2>
             <p className="mt-3 text-academic-600 dark:text-academic-300 text-sm sm:text-base leading-relaxed">
-              Applying machine learning, kinetic modeling, and distributed algorithms to physical reality — from converting biomass into clean energy to real-time space weather drought prediction and scalable classroom tools.
+              Applying kinetic modeling, chemical thermodynamics, and distributed algorithms to physical reality — from closed-loop autothermal biomass pyrolysis to space-weather drought forecasting and low-latency classroom platforms.
             </p>
           </div>
 
@@ -109,8 +109,8 @@ export const ProjectsSection: React.FC = () => {
                 </div>
               </div>
 
-              {/* Action Button: Open Case Study Modal */}
-              <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 flex items-center justify-between">
+              {/* Action Buttons */}
+              <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 flex flex-wrap items-center justify-between gap-3">
                 <button
                   onClick={() => setActiveModalProject(project)}
                   className="inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform"
@@ -118,6 +118,18 @@ export const ProjectsSection: React.FC = () => {
                   <span>Explore Case Study & Architecture</span>
                   <ArrowUpRight className="w-3.5 h-3.5" />
                 </button>
+
+                {project.links?.paper && (
+                  <a
+                    href={project.links.paper}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-1 px-2.5 py-1 rounded-md text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 transition-colors"
+                  >
+                    <FileText className="w-3 h-3" />
+                    <span>Technical Paper (PDF)</span>
+                  </a>
+                )}
               </div>
 
             </div>
