@@ -1,7 +1,9 @@
 import React, { useState } from 'react';
+import { motion, AnimatePresence } from 'framer-motion';
 import { FlaskConical, ArrowUpRight, FileText } from 'lucide-react';
 import { profileData, Project } from '../data/profileData';
 import { ProjectModal } from './ProjectModal';
+import { silk, spring } from '../engine/motion';
 
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -32,119 +34,127 @@ export const ProjectsSection: React.FC = () => {
             </p>
           </div>
 
-          {/* Category Filter Pills with Touch-Friendly Heights */}
+          {/* Category Filter Pills with Touch-Friendly Heights and Silk Press */}
           <div 
             className="flex flex-wrap items-center gap-1.5 p-1 rounded-2xl bg-academic-100 dark:bg-academic-900 border border-academic-200 dark:border-academic-800 self-start md:self-end"
             role="tablist"
             aria-label="Project Categories"
           >
             {categories.map((cat) => (
-              <button
+              <motion.button
                 key={cat}
+                {...silk.press}
                 onClick={() => setSelectedCategory(cat)}
                 role="tab"
                 aria-selected={selectedCategory === cat}
-                className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold transition-all focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none ${
+                className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none ${
                   selectedCategory === cat
                     ? 'bg-white dark:bg-academic-800 text-academic-950 dark:text-white shadow-sm border border-academic-200 dark:border-academic-700'
                     : 'text-academic-600 dark:text-academic-400 hover:text-academic-950 dark:hover:text-white'
                 }`}
               >
                 {cat}
-              </button>
+              </motion.button>
             ))}
           </div>
         </div>
 
-        {/* Project Cards Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-          {filteredProjects.map((project) => (
-            <div
-              key={project.id}
-              className="group p-6 sm:p-7 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-all flex flex-col justify-between"
-            >
-              <div>
-                {/* Top Badge & Role */}
-                <div className="flex items-center justify-between gap-2 mb-3">
-                  <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1">
-                    <FlaskConical className="w-3 h-3" /> {project.category}
-                  </span>
-                  <span className="text-xs text-academic-500 font-mono">
-                    {project.timeline}
-                  </span>
+        {/* Project Cards Grid with Silk Layout FLIP & Hover */}
+        <motion.div layout className="grid grid-cols-1 md:grid-cols-2 gap-6">
+          <AnimatePresence>
+            {filteredProjects.map((project) => (
+              <motion.div
+                key={project.id}
+                layout
+                {...silk.entrance}
+                {...silk.hover}
+                className="group p-6 sm:p-7 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-colors flex flex-col justify-between"
+              >
+                <div>
+                  {/* Top Badge & Role */}
+                  <div className="flex items-center justify-between gap-2 mb-3">
+                    <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1">
+                      <FlaskConical className="w-3 h-3" /> {project.category}
+                    </span>
+                    <span className="text-xs text-academic-500 font-mono">
+                      {project.timeline}
+                    </span>
+                  </div>
+
+                  {/* Title & Role */}
+                  <h3 className="text-xl font-serif font-bold text-academic-950 dark:text-white group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors tracking-tight">
+                    {project.title}
+                  </h3>
+                  <p className="text-xs font-semibold text-academic-500 dark:text-academic-400 mt-0.5">
+                    {project.role}
+                  </p>
+
+                  {/* Subtitle / Pitch */}
+                  <p className="mt-3 text-sm text-academic-600 dark:text-academic-300 leading-relaxed">
+                    {project.subtitle}
+                  </p>
+
+                  {/* Metrics / Key Outcomes Strip */}
+                  <div className="mt-4 pt-4 border-t border-academic-100 dark:border-academic-800/80 space-y-2">
+                    {project.metrics.map((metric, idx) => (
+                      <div key={idx} className="flex items-center gap-2 text-xs text-academic-700 dark:text-academic-300 font-medium">
+                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span>{metric}</span>
+                      </div>
+                    ))}
+                  </div>
+
+                  {/* Tech Stack Pills */}
+                  <div className="mt-5 flex flex-wrap gap-1.5">
+                    {project.techStack.slice(0, 4).map((tech, idx) => (
+                      <span
+                        key={idx}
+                        className="px-2.5 py-1 rounded-lg text-[11px] font-mono bg-academic-100 dark:bg-academic-800/80 text-academic-700 dark:text-academic-300 border border-academic-200/60 dark:border-academic-700/60"
+                      >
+                        {tech}
+                      </span>
+                    ))}
+                    {project.techStack.length > 4 && (
+                      <span className="px-1.5 py-1 text-[11px] font-mono text-academic-400">
+                        +{project.techStack.length - 4} more
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                {/* Title & Role */}
-                <h3 className="text-xl font-serif font-bold text-academic-950 dark:text-white group-hover:text-amber-700 dark:group-hover:text-amber-400 transition-colors tracking-tight">
-                  {project.title}
-                </h3>
-                <p className="text-xs font-semibold text-academic-500 dark:text-academic-400 mt-0.5">
-                  {project.role}
-                </p>
+                {/* Action Buttons with 44px min height & spring.press */}
+                <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 flex flex-wrap items-center justify-between gap-3">
+                  <motion.button
+                    {...spring.press}
+                    onClick={() => setActiveModalProject(project)}
+                    className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none rounded-lg px-2 py-1 -mx-2"
+                  >
+                    <span>Explore Case Study & Architecture</span>
+                    <ArrowUpRight className="w-4 h-4" />
+                  </motion.button>
 
-                {/* Subtitle / Pitch */}
-                <p className="mt-3 text-sm text-academic-600 dark:text-academic-300 leading-relaxed">
-                  {project.subtitle}
-                </p>
-
-                {/* Metrics / Key Outcomes Strip */}
-                <div className="mt-4 pt-4 border-t border-academic-100 dark:border-academic-800/80 space-y-2">
-                  {project.metrics.map((metric, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs text-academic-700 dark:text-academic-300 font-medium">
-                      <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
-                      <span>{metric}</span>
-                    </div>
-                  ))}
-                </div>
-
-                {/* Tech Stack Pills */}
-                <div className="mt-5 flex flex-wrap gap-1.5">
-                  {project.techStack.slice(0, 4).map((tech, idx) => (
-                    <span
-                      key={idx}
-                      className="px-2.5 py-1 rounded-lg text-[11px] font-mono bg-academic-100 dark:bg-academic-800/80 text-academic-700 dark:text-academic-300 border border-academic-200/60 dark:border-academic-700/60"
+                  {project.links?.paper && (
+                    <motion.a
+                      {...spring.press}
+                      href={project.links.paper}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
                     >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.techStack.length > 4 && (
-                    <span className="px-1.5 py-1 text-[11px] font-mono text-academic-400">
-                      +{project.techStack.length - 4} more
-                    </span>
+                      <FileText className="w-3.5 h-3.5" />
+                      <span>Technical Paper (PDF)</span>
+                    </motion.a>
                   )}
                 </div>
-              </div>
 
-              {/* Action Buttons with 44px min height */}
-              <div className="mt-6 pt-4 border-t border-academic-100 dark:border-academic-800 flex flex-wrap items-center justify-between gap-3">
-                <button
-                  onClick={() => setActiveModalProject(project)}
-                  className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none rounded-lg px-2 py-1 -mx-2"
-                >
-                  <span>Explore Case Study & Architecture</span>
-                  <ArrowUpRight className="w-4 h-4" />
-                </button>
-
-                {project.links?.paper && (
-                  <a
-                    href={project.links.paper}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
-                  >
-                    <FileText className="w-3.5 h-3.5" />
-                    <span>Technical Paper (PDF)</span>
-                  </a>
-                )}
-              </div>
-
-            </div>
-          ))}
-        </div>
+              </motion.div>
+            ))}
+          </AnimatePresence>
+        </motion.div>
 
       </div>
 
-      {/* Deep-Dive Modal */}
+      {/* Deep-Dive Modal with AnimatePresence */}
       <ProjectModal
         project={activeModalProject}
         onClose={() => setActiveModalProject(null)}

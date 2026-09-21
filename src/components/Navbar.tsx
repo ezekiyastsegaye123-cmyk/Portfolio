@@ -1,6 +1,8 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Moon, Sun, Printer, FlaskConical, Atom } from 'lucide-react';
 import { profileData } from '../data/profileData';
+import { spring, silk } from '../engine/motion';
 
 interface NavbarProps {
   darkMode: boolean;
@@ -55,25 +57,27 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, onPrin
           </a>
         </nav>
 
-        {/* Right: Actions (Print / PDF + Dark Mode Toggle) */}
+        {/* Right: Actions (Print / PDF + Dark Mode Toggle with Spring Press) */}
         <div className="flex items-center gap-2">
-          <button
+          <motion.button
+            {...spring.press}
             onClick={onPrintDossier}
-            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-academic-100 dark:bg-academic-800 text-academic-800 dark:text-academic-100 hover:bg-academic-200 dark:hover:bg-academic-700 transition-all border border-academic-300 dark:border-academic-700 shadow-sm focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+            className="min-h-[44px] min-w-[44px] inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-semibold bg-academic-100 dark:bg-academic-800 text-academic-800 dark:text-academic-100 hover:bg-academic-200 dark:hover:bg-academic-700 transition-colors border border-academic-300 dark:border-academic-700 shadow-sm focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             title="Print or Save Official Admissions PDF Dossier"
             aria-label="Print or Save Official Admissions PDF Dossier"
           >
             <Printer className="w-4 h-4 text-amber-600 dark:text-amber-400" />
             <span className="hidden sm:inline">Print / PDF Dossier</span>
-          </button>
+          </motion.button>
 
-          <button
+          <motion.button
+            {...spring.press}
             onClick={toggleDarkMode}
             aria-label={darkMode ? "Switch to light mode" : "Switch to dark mode"}
             className="min-h-[44px] min-w-[44px] flex items-center justify-center rounded-xl text-academic-600 dark:text-academic-300 hover:bg-academic-100 dark:hover:bg-academic-800 transition-colors border border-transparent hover:border-academic-200 dark:hover:border-academic-700 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
           >
             {darkMode ? <Sun className="w-5 h-5 text-amber-400" /> : <Moon className="w-5 h-5 text-academic-700" />}
-          </button>
+          </motion.button>
         </div>
 
       </div>
