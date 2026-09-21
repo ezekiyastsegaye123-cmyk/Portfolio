@@ -39,7 +39,7 @@ export default function App() {
   };
 
   return (
-    <div className="min-h-screen flex flex-col font-sans transition-colors duration-200">
+    <div className="min-h-screen flex flex-col font-body transition-colors duration-200">
       
       {/* Screen Interactive Portfolio */}
       <div className="no-print flex-1 flex flex-col">

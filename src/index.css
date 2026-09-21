@@ -4,7 +4,7 @@
 
 @layer base {
   html {
-    font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+    font-family: 'Space Grotesk', system-ui, sans-serif;
     scroll-padding-top: 5rem;
   }
 
@@ -20,27 +20,27 @@
     }
   }
 
-  /* Accessible focus indicators with physical precision */
+  /* Accessible focus indicators — specimen color */
   a:focus-visible,
   button:focus-visible,
   input:focus-visible {
-    outline: 2px solid theme('colors.amber.600');
+    outline: 2px solid var(--specimen);
     outline-offset: 2px;
   }
 }
 
-/* Scientific & Archival Graph Paper Texture (Human Engineered, Non-AI) */
+/* Scientific & Archival Graph Paper Texture — Specimen tint */
 .archival-grid {
   background-image: 
-    linear-gradient(to right, rgba(217, 119, 6, 0.04) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(217, 119, 6, 0.04) 1px, transparent 1px);
+    linear-gradient(to right, rgba(200, 85, 61, 0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(200, 85, 61, 0.04) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 
 .dark .archival-grid {
   background-image: 
-    linear-gradient(to right, rgba(251, 191, 36, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(251, 191, 36, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(224, 122, 95, 0.03) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(224, 122, 95, 0.03) 1px, transparent 1px);
   background-size: 32px 32px;
 }
 

@@ -10,9 +10,30 @@
     <!-- Google Fonts for Academic Prestige -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600&family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,400;1,600&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@0;1&family=JetBrains+Mono:wght@400;500;600&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+      :root {
+        --ink: #1a1a2e;
+        --paper: #f5f0eb;
+        --specimen: #c8553d;
+        --reagent: #2d6a4f;
+        --catalyst: #d4a373;
+        --neutral: #6b7280;
+        --data-bg: #fdf8f3;
+      }
+      .dark {
+        --ink: #e8e2d9;
+        --paper: #0d0d1a;
+        --specimen: #e07a5f;
+        --reagent: #52b788;
+        --catalyst: #ddb892;
+        --neutral: #9ca3af;
+        --data-bg: #141422;
+      }
+    </style>
   </head>
-  <body class="bg-academic-50 text-academic-900 dark:bg-academic-950 dark:text-academic-100 transition-colors duration-200 antialiased selection:bg-amber-500/20 selection:text-amber-700 dark:selection:text-amber-300">
+  <body class="bg-paper text-ink dark:bg-paper dark:text-ink transition-colors duration-200 antialiased selection:bg-specimen/20 selection:text-specimen">
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
   </body>

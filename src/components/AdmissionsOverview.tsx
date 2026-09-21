@@ -16,7 +16,7 @@ export const AdmissionsOverview: React.FC = () => {
       value: "Top 2.0%",
       detail: "Rank 5 / 250 · 3.93 Unweighted GPA",
       subtext: "St. John Baptist De La Salle · Dean's High Honor Roll (All 4 Years)",
-      accent: "text-amber-600 dark:text-amber-400",
+      accent: "text-specimen",
     },
     {
       code: "METRIC-02",
@@ -24,7 +24,7 @@ export const AdmissionsOverview: React.FC = () => {
       value: "558 / 600",
       detail: "Ministry Outstanding Achiever Award",
       subtext: "Standardized Secondary Leaving Examination Certificate",
-      accent: "text-amber-600 dark:text-amber-400",
+      accent: "text-specimen",
     },
     {
       code: "METRIC-03",
@@ -32,7 +32,7 @@ export const AdmissionsOverview: React.FC = () => {
       value: "16-Page Paper",
       detail: "Closed-Loop Autothermal Pyrolysis",
       subtext: "73.6% Thermal Efficiency · Semyonov Lumped Kinetics",
-      accent: "text-emerald-600 dark:text-emerald-400",
+      accent: "text-reagent",
     },
     {
       code: "METRIC-04",
@@ -45,23 +45,23 @@ export const AdmissionsOverview: React.FC = () => {
   ];
 
   return (
-    <section data-slot="admissions-overview" id="overview" className="py-12 bg-academic-100/50 dark:bg-academic-900/30 border-b border-academic-200 dark:border-academic-800">
+    <section data-slot="admissions-overview" id="overview" className="py-12 bg-paper border-t border-ink/15">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header with Section Index Number */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 pb-4 border-b border-academic-200/80 dark:border-academic-800/80">
+        <div className="flex flex-col md:flex-row md:items-end justify-between mb-8 gap-4 pb-4 border-b border-ink/15">
           <div>
-            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400">
+            <div className="flex items-center gap-2 text-xs font-mono font-bold uppercase tracking-wider text-specimen">
               <span>§ 00</span>
               <span>·</span>
               <span>EXECUTIVE CANDIDATE DOSSIER</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-academic-950 dark:text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl font-display font-bold text-[#080812] dark:text-ink mt-1">
               At-a-Glance Verified Qualifications
             </h2>
           </div>
-          <div className="text-xs font-mono text-academic-500 dark:text-academic-400 flex items-center gap-2">
-            <ShieldCheck className="size-4 text-emerald-600 dark:text-emerald-400" />
+          <div className="text-xs font-mono text-ink/40 flex items-center gap-2">
+            <ShieldCheck className="size-4 text-reagent" />
             <span>Credential Verification Ledger · Ministry of Education & School Certified</span>
           </div>
         </div>
@@ -72,24 +72,27 @@ export const AdmissionsOverview: React.FC = () => {
             <motion.div
               key={idx}
               {...silk.hover}
-              className="p-5 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-colors"
+              className={cn(
+                "p-5 rounded-none bg-white dark:bg-[#0d0d1a] border border-ink/15 border-l-2 border-l-specimen shadow-sm flex flex-col justify-between hover:border-specimen transition-colors",
+                idx === 0 ? "sm:col-span-2 lg:col-span-1" : ""
+              )}
             >
               <div>
-                <div className="flex items-center justify-between text-[10px] font-mono text-academic-400 mb-2">
+                <div className="flex items-center justify-between text-[10px] font-mono text-ink/40 mb-2">
                   <span>{item.code}</span>
-                  <span className="size-1.5 rounded-full bg-amber-500" />
+                  <span className="size-1.5 rounded-full bg-specimen" />
                 </div>
-                <div className="text-xs font-mono font-semibold text-academic-600 dark:text-academic-300">
+                <div className="text-xs font-mono font-semibold text-ink/40 dark:text-white">
                   {item.label}
                 </div>
-                <div className={cn("text-3xl font-serif font-bold mt-1 tracking-tight", item.accent)}>
+                <div className={cn("text-3xl font-display font-bold mt-1 tracking-tight", item.accent)}>
                   {item.value}
                 </div>
-                <div className="text-xs font-semibold text-academic-900 dark:text-white mt-1">
+                <div className="text-xs font-semibold text-[#0d0d1a] dark:text-white mt-1">
                   {item.detail}
                 </div>
               </div>
-              <div className="mt-4 pt-3 border-t border-academic-100 dark:border-academic-800/80 text-[11px] text-academic-500 dark:text-academic-400 font-sans">
+              <div className="mt-4 pt-3 border-t border-ink/15 text-[11px] text-ink/40 dark:text-white/70 font-body">
                 {item.subtext}
               </div>
             </motion.div>
@@ -97,23 +100,23 @@ export const AdmissionsOverview: React.FC = () => {
         </div>
 
         {/* Candidate Origin & Institution Verification Strip */}
-        <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
-          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-academic-700 dark:text-academic-300">
+        <div className="mt-6 p-4 sm:p-5 rounded-none bg-white dark:bg-[#0d0d1a] border border-ink/15 border-l-2 border-l-specimen flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+          <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-ink/40 dark:text-white/70">
             <div className="flex items-center gap-2">
-              <GraduationCap className="size-4 text-amber-600 dark:text-amber-400" />
-              <span className="font-semibold text-academic-900 dark:text-white">{education.institution}</span>
+              <GraduationCap className="size-4 text-specimen" />
+              <span className="font-semibold text-[#0d0d1a] dark:text-white">{education.institution}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Compass className="size-4 text-amber-600 dark:text-amber-400" />
+              <Compass className="size-4 text-specimen" />
               <span>{education.status}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <MapPin className="size-4 text-amber-600 dark:text-amber-400" />
+              <MapPin className="size-4 text-specimen" />
               <span>{personal.location} (UTC+3)</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Sparkles className="size-4 text-amber-600 dark:text-amber-400" />
-              <span className="font-medium text-academic-800 dark:text-academic-200">Aspirant: {personal.futurePlan}</span>
+              <Sparkles className="size-4 text-specimen" />
+              <span className="font-medium text-ink/40 dark:text-white">Aspirant: {personal.futurePlan}</span>
             </div>
           </div>
 
@@ -122,19 +125,19 @@ export const AdmissionsOverview: React.FC = () => {
               {...spring.press}
               {...silk.hover}
               href={`mailto:${personal.email}`}
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-none text-xs font-mono font-medium text-ink/40 dark:text-white hover:text-specimen dark:hover:text-specimen transition-colors focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
             >
               <Mail className="size-3.5" />
               <span>{personal.email}</span>
             </motion.a>
-            <span className="text-academic-300 dark:text-academic-700 select-none">|</span>
+            <span className="text-ink/15 select-none">|</span>
             <motion.a
               {...spring.press}
               {...silk.hover}
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-none text-xs font-mono font-medium text-ink/40 dark:text-white hover:text-specimen dark:hover:text-specimen transition-colors focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
             >
               <GithubIcon className="size-3.5" />
               <span>GitHub</span>

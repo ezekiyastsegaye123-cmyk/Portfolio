@@ -77,30 +77,30 @@ export const PyrolysisSimulator: React.FC = () => {
   }, [temperature, closedLoopActive]);
 
   return (
-    <div data-slot="pyrolysis-simulator" className="p-5 sm:p-7 rounded-2xl bg-academic-950 text-white border border-amber-500/30 shadow-2xl relative overflow-hidden">
+    <div data-slot="pyrolysis-simulator" className="p-5 sm:p-7 rounded-none rounded-tl-2xl bg-[#080812] text-white border border-specimen/30 shadow-2xl relative overflow-hidden">
       
       {/* Background Technical Grid Motif */}
       <div className="absolute inset-0 opacity-10 millimeter-grid pointer-events-none" />
 
       {/* Console Header */}
-      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-academic-800">
+      <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-ink/15">
         <div className="flex items-center gap-2.5">
-          <div className="size-8 rounded-lg bg-amber-500/20 border border-amber-500/40 flex items-center justify-center text-amber-400">
+          <div className="size-8 rounded-sm bg-specimen/20 border border-specimen/40 flex items-center justify-center text-specimen">
             <Flame className="size-4 animate-pulse" />
           </div>
           <div>
             <div className="flex flex-wrap items-center gap-2">
-              <span className="text-xs font-mono font-bold tracking-wider uppercase text-amber-400">
+              <span className="text-xs font-mono font-bold tracking-wider uppercase text-specimen">
                 Interactive Chemical Reactor Instrument
               </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-amber-500/10 text-amber-300 border border-amber-500/30 font-mono">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-sm bg-specimen/10 text-specimen border border-specimen/30 font-mono">
                 FIG. 2 · MODEL
               </span>
-              <span className="text-[10px] px-1.5 py-0.5 rounded bg-emerald-500/15 text-emerald-300 border border-emerald-500/30 font-mono">
+              <span className="text-[10px] px-1.5 py-0.5 rounded-sm bg-reagent/15 text-reagent border border-reagent/30 font-mono">
                 ADVISED BY CHEMICAL SOCIETY OF ETHIOPIA (CSE)
               </span>
             </div>
-            <h4 className="font-serif font-bold text-base text-academic-100">
+            <h4 className="font-display font-bold text-base text-ink">
               Closed-Loop Pyrolysis Reactor Simulation
             </h4>
           </div>
@@ -112,11 +112,11 @@ export const PyrolysisSimulator: React.FC = () => {
           {...silk.hover}
           onClick={() => setClosedLoopActive(!closedLoopActive)}
           className={cn(
-            "min-h-[44px] px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border",
-            "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
+            "min-h-[44px] px-4 py-2 rounded-sm text-xs font-mono font-bold transition-all border",
+            "focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none",
             closedLoopActive
-              ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-[0_0_15px_rgba(217,119,6,0.3)]"
-              : "bg-academic-800/80 border-academic-700 text-academic-400"
+              ? "bg-specimen/20 border-specimen text-specimen shadow-[0_0_15px_rgba(200,85,61,0.3)]"
+              : "bg-ink/20 border-ink/40 text-ink/40"
           )}
         >
           {closedLoopActive ? '● Closed-Loop: 73.6% Autothermal' : '○ Open-Loop: 41.2% (Conventional)'}
@@ -129,11 +129,11 @@ export const PyrolysisSimulator: React.FC = () => {
         {/* Left: Interactive 3D Reactor Core (7 cols) */}
         <div className="lg:col-span-7 flex flex-col">
           <div className="flex items-center justify-between mb-2">
-            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
-              <Rotate3d className="size-3.5 text-amber-400" />
+            <span className="text-xs font-mono uppercase tracking-wider text-specimen flex items-center gap-1.5">
+              <Rotate3d className="size-3.5 text-specimen" />
               Live 3D Reaction Chamber & Particle Kinetics
             </span>
-            <span className="text-[10px] font-mono text-academic-400 hidden sm:inline">
+            <span className="text-[10px] font-mono text-ink/40 hidden sm:inline">
               Three.js · Arrhenius Velocity Dynamic
             </span>
           </div>
@@ -147,34 +147,34 @@ export const PyrolysisSimulator: React.FC = () => {
         </div>
 
         {/* Right: Calculated Yields & Heat Balance (5 cols) */}
-        <div className="lg:col-span-5 p-5 rounded-xl bg-academic-900/80 border border-academic-800 flex flex-col justify-between space-y-4">
+        <div className="lg:col-span-5 p-5 rounded-sm bg-[#0d0d1a]/80 border border-ink/15 flex flex-col justify-between space-y-4">
           
           <div>
-            <span className="text-[10px] font-mono uppercase tracking-wider text-academic-400 block mb-3">
+            <span className="text-[10px] font-mono uppercase tracking-wider text-ink/40 block mb-3">
               Predicted Mass Yield Fractions:
             </span>
 
             {/* Yield Bars */}
             <div className="space-y-3 font-mono text-xs">
               <div>
-                <div className="flex justify-between text-academic-300 mb-1">
+                <div className="flex justify-between text-ink/25 mb-1">
                   <span>Liquid Bio-Oil</span>
-                  <span className="font-bold text-amber-400">{model.bioOil}%</span>
+                  <span className="font-bold text-specimen">{model.bioOil}%</span>
                 </div>
-                <div className="w-full h-2 bg-academic-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-ink/15 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-amber-500 transition-all duration-300"
+                    className="h-full bg-specimen transition-all duration-300"
                     style={{ width: `${model.bioOil}%` }}
                   />
                 </div>
               </div>
 
               <div>
-                <div className="flex justify-between text-academic-300 mb-1">
+                <div className="flex justify-between text-ink/25 mb-1">
                   <span>Non-Condensable Syngas</span>
                   <span className="font-bold text-blue-400">{model.syngas}%</span>
                 </div>
-                <div className="w-full h-2 bg-academic-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-ink/15 rounded-full overflow-hidden">
                   <div 
                     className="h-full bg-blue-500 transition-all duration-300"
                     style={{ width: `${model.syngas}%` }}
@@ -183,13 +183,13 @@ export const PyrolysisSimulator: React.FC = () => {
               </div>
 
               <div>
-                <div className="flex justify-between text-academic-300 mb-1">
+                <div className="flex justify-between text-ink/25 mb-1">
                   <span>Solid Carbon Biochar</span>
-                  <span className="font-bold text-emerald-400">{model.bioChar}%</span>
+                  <span className="font-bold text-reagent">{model.bioChar}%</span>
                 </div>
-                <div className="w-full h-2 bg-academic-800 rounded-full overflow-hidden">
+                <div className="w-full h-2 bg-ink/15 rounded-full overflow-hidden">
                   <div 
-                    className="h-full bg-emerald-500 transition-all duration-300"
+                    className="h-full bg-reagent transition-all duration-300"
                     style={{ width: `${model.bioChar}%` }}
                   />
                 </div>
@@ -198,17 +198,17 @@ export const PyrolysisSimulator: React.FC = () => {
           </div>
 
           {/* Autothermal & Thermal Efficiency Badge */}
-          <div className="pt-3 border-t border-academic-800 space-y-2">
+          <div className="pt-3 border-t border-ink/15 space-y-2">
             <div className="flex items-center justify-between text-xs font-mono">
-              <span className="text-academic-400">System Thermal Efficiency:</span>
-              <span className="text-base font-bold text-amber-400 font-mono">
+              <span className="text-ink/40">System Thermal Efficiency:</span>
+              <span className="text-base font-bold text-specimen font-mono">
                 {model.efficiency}%
               </span>
             </div>
 
             <div className="flex items-center gap-2 text-[11px] font-mono">
-              <span className={cn("size-2 rounded-full", model.isAutothermal ? "bg-emerald-400 animate-ping" : "bg-amber-400")} />
-              <span className={model.isAutothermal ? 'text-emerald-300 font-bold' : 'text-academic-400'}>
+              <span className={cn("size-2 rounded-full", model.isAutothermal ? "bg-reagent animate-ping" : "bg-specimen")} />
+              <span className={model.isAutothermal ? 'text-reagent font-bold' : 'text-ink/40'}>
                 {model.isAutothermal ? 'Autothermal Equilibrium Met' : 'Requires Supplemental Preheat'}
               </span>
             </div>
@@ -219,7 +219,7 @@ export const PyrolysisSimulator: React.FC = () => {
               href="/pyrolysis-framework.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 min-h-[44px] w-full py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-academic-950 transition-colors flex items-center justify-center gap-1.5 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="mt-2 min-h-[44px] w-full py-2.5 px-3 rounded-sm text-xs font-mono font-bold bg-specimen hover:opacity-90 text-[#080812] transition-colors flex items-center justify-center gap-1.5 focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
             >
               <FileText className="size-3.5" />
               <span>Inspect 16-Page Paper Calculations</span>
@@ -231,19 +231,19 @@ export const PyrolysisSimulator: React.FC = () => {
       </div>
 
       {/* Secondary Section: Temperature Controls & Dynamic Reaction Pathway */}
-      <div className="relative z-10 mt-6 pt-6 border-t border-academic-800 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      <div className="relative z-10 mt-6 pt-6 border-t border-ink/15 grid grid-cols-1 lg:grid-cols-12 gap-6">
         
         {/* Left: Temperature Slider & Kinetic Presets (7 cols) */}
         <div className="lg:col-span-7 space-y-4">
           <div>
             <div className="flex justify-between items-baseline mb-2">
-              <label htmlFor="temp-slider" className="text-xs font-mono text-academic-400 uppercase tracking-wider flex items-center gap-1.5">
-                <Sliders className="size-3 text-amber-400" />
+              <label htmlFor="temp-slider" className="text-xs font-mono text-ink/40 uppercase tracking-wider flex items-center gap-1.5">
+                <Sliders className="size-3 text-specimen" />
                 Reactor Temperature (T<sub>pyro</sub>)
               </label>
-              <div className="text-2xl font-mono font-bold text-amber-400">
+              <div className="text-2xl font-mono font-bold text-specimen">
                 {temperature}°C
-                <span className="text-xs text-academic-500 font-normal ms-1">
+                <span className="text-xs text-ink/40 font-normal ms-1">
                   ({(temperature + 273.15).toFixed(1)} K)
                 </span>
               </div>
@@ -258,10 +258,10 @@ export const PyrolysisSimulator: React.FC = () => {
               value={temperature}
               onChange={(e) => setTemperature(Number(e.target.value))}
               aria-label="Reactor Temperature Slider"
-              className="w-full h-2.5 bg-academic-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+              className="w-full h-2.5 bg-ink/15 rounded-sm appearance-none cursor-pointer accent-[#c8553d] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-specimen"
             />
 
-            <div className="flex justify-between text-[10px] font-mono text-academic-500 mt-1">
+            <div className="flex justify-between text-[10px] font-mono text-ink/40 mt-1">
               <span>200°C (Hemicellulose)</span>
               <span>480°C (Fast Pyrolysis)</span>
               <span>900°C (Tar Cracking)</span>
@@ -270,7 +270,7 @@ export const PyrolysisSimulator: React.FC = () => {
 
           {/* Quick Preset Buttons with min-h-[44px] */}
           <div>
-            <span className="text-[11px] font-mono text-academic-400 block mb-2 uppercase tracking-wider">
+            <span className="text-[11px] font-mono text-ink/40 block mb-2 uppercase tracking-wider">
               Theoretical Kinetic Regimes:
             </span>
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
@@ -286,11 +286,11 @@ export const PyrolysisSimulator: React.FC = () => {
                   {...silk.hover}
                   onClick={() => setTemperature(preset.temp)}
                   className={cn(
-                    "min-h-[44px] px-2.5 py-1.5 rounded-xl text-xs font-mono transition-all text-center border",
-                    "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
+                    "min-h-[44px] px-2.5 py-1.5 rounded-sm text-xs font-mono transition-all text-center border",
+                    "focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none",
                     temperature === preset.temp
-                      ? "bg-amber-500 text-academic-950 font-bold border-amber-400"
-                      : "bg-academic-900/80 text-academic-300 border-academic-800 hover:border-academic-700"
+                      ? "bg-specimen text-[#080812] font-bold border-specimen"
+                      : "bg-[#0d0d1a]/80 text-ink/25 border-ink/15 hover:border-ink/40"
                   )}
                 >
                   {preset.label}
@@ -302,15 +302,15 @@ export const PyrolysisSimulator: React.FC = () => {
         </div>
 
         {/* Right: Dynamic Mechanism Box (5 cols) */}
-        <div className="lg:col-span-5 p-4 rounded-xl bg-academic-900/90 border border-academic-800 text-xs flex flex-col justify-center">
-          <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">
+        <div className="lg:col-span-5 p-4 rounded-sm bg-[#0d0d1a]/90 border border-ink/15 text-xs flex flex-col justify-center">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-specimen block mb-1">
             Active Decomposition Pathway:
           </span>
-          <p className="font-serif font-bold text-academic-100 text-sm leading-snug">
+          <p className="font-display font-bold text-ink text-sm leading-snug">
             {model.mechanism}
           </p>
-          <div className="mt-2 text-[11px] text-academic-400 flex items-center gap-1.5">
-            <span className="font-mono text-amber-500">Species:</span> {model.dominantSpecies}
+          <div className="mt-2 text-[11px] text-ink/40 flex items-center gap-1.5">
+            <span className="font-mono text-specimen">Species:</span> {model.dominantSpecies}
           </div>
         </div>
 
@@ -319,4 +319,5 @@ export const PyrolysisSimulator: React.FC = () => {
     </div>
   );
 };
+
 

@@ -657,7 +657,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
     <div 
       ref={containerRef}
       className={cn(
-        "relative rounded-xl overflow-hidden bg-academic-950 text-white select-none border border-academic-800/80 shadow-2xl",
+        "relative rounded-none rounded-tl-2xl overflow-hidden bg-[#080812] text-white select-none border border-ink/15 shadow-2xl",
         compactMode ? "h-[280px] sm:h-[320px]" : "h-[420px] sm:h-[480px]",
         className
       )}
@@ -675,7 +675,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
         onPointerUp={handlePointerUp}
         onPointerCancel={handlePointerUp}
         style={{ touchAction: 'pan-y' }}
-        className="w-full h-full cursor-grab active:cursor-grabbing relative z-0 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+        className="w-full h-full cursor-grab active:cursor-grabbing relative z-0 focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
         tabIndex={0}
         role="region"
         aria-label="Interactive 3D Reactor Core Viewport. Drag horizontally to rotate."
@@ -688,10 +688,10 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
             initial={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
-            className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-academic-950/90 backdrop-blur-sm"
+            className="absolute inset-0 z-30 flex flex-col items-center justify-center bg-[#080812]/90 backdrop-blur-sm"
           >
-            <div className="size-8 rounded-full border-2 border-amber-500/30 border-t-amber-400 animate-spin" />
-            <span className="mt-3 text-xs font-mono text-amber-400 tracking-wider uppercase">
+            <div className="size-8 rounded-full border-2 border-specimen/30 border-t-specimen animate-spin" />
+            <span className="mt-3 text-xs font-mono text-specimen tracking-wider uppercase">
               Compiling 3D Reactor Shaders...
             </span>
           </motion.div>
@@ -700,13 +700,13 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
 
       {/* Scientific HUD: Top Left Technical Tag */}
       <div className="absolute top-3 left-3 z-10 pointer-events-none flex flex-col gap-1 font-mono text-[10px]">
-        <div className="flex items-center gap-1.5 px-2 py-0.8 rounded bg-academic-900/90 border border-academic-700/80 text-amber-400 backdrop-blur-md">
+        <div className="flex items-center gap-1.5 px-2 py-0.8 rounded-sm bg-[#0d0d1a]/90 border border-ink/20 text-specimen backdrop-blur-md">
           <Flame className="size-3 animate-pulse" />
           <span className="font-bold">
             {viewMode === 'reactor' ? `REACTOR VESSEL · ${temperature}°C` : 'MACROMOLECULAR INTERMEDIATE'}
           </span>
         </div>
-        <div className="text-academic-400 text-[9px] px-1">
+        <div className="text-white/40 text-[9px] px-1">
           {viewMode === 'reactor' 
             ? (closedLoopActive ? '● Autothermal Reintegration Active' : '○ Open-Loop Exhaust Bypass')
             : 'Levoglucosan Transglycosylation Conformation'
@@ -716,8 +716,8 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
 
       {/* Top Right HUD: View Mode & Engine Badges */}
       <div className="absolute top-3 right-3 z-10 flex items-center gap-1.5 font-mono text-[10px]">
-        <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.8 rounded bg-academic-900/80 border border-academic-800 text-academic-400 backdrop-blur-md">
-          <Activity className="size-3 text-emerald-400" />
+        <span className="hidden sm:inline-flex items-center gap-1 px-2 py-0.8 rounded-sm bg-[#0d0d1a]/80 border border-ink/15 text-white/40 backdrop-blur-md">
+          <Activity className="size-3 text-reagent" />
           <span>{fps} FPS · WebGL</span>
         </span>
 
@@ -726,17 +726,17 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
           {...spring.press}
           {...silk.hover}
           onClick={() => setViewMode(viewMode === 'reactor' ? 'molecular' : 'reactor')}
-          className="min-h-[44px] px-3 py-1.5 rounded-lg bg-academic-900/90 hover:bg-academic-800 border border-academic-700 text-xs font-mono font-semibold text-academic-200 flex items-center gap-1.5 shadow-sm backdrop-blur-md focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+          className="min-h-[44px] px-3 py-1.5 rounded-sm bg-[#0d0d1a]/90 hover:bg-[#0d0d1a] border border-ink/20 text-xs font-mono font-semibold text-white/70 flex items-center gap-1.5 shadow-sm backdrop-blur-md focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
           title={viewMode === 'reactor' ? 'Inspect Molecular Intermediate Lattice' : 'Return to Reactor Core'}
         >
           {viewMode === 'reactor' ? (
             <>
-              <Cpu className="size-3.5 text-amber-400" />
+              <Cpu className="size-3.5 text-specimen" />
               <span>Molecular Lattice</span>
             </>
           ) : (
             <>
-              <Rotate3d className="size-3.5 text-blue-400" />
+              <Rotate3d className="size-3.5 text-[#2563eb]" />
               <span>Reactor Core</span>
             </>
           )}
@@ -748,12 +748,12 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
         
         {/* Preset Angle Buttons (Desktop/Full Mode) */}
         {!compactMode && viewMode === 'reactor' && (
-          <div className="flex items-center gap-1 p-1 rounded-lg bg-academic-900/90 border border-academic-800/90 backdrop-blur-md text-[11px] font-mono">
+          <div className="flex items-center gap-1 p-1 rounded-sm bg-[#0d0d1a]/90 border border-ink/15 backdrop-blur-md text-[11px] font-mono">
             <button
               onClick={() => applyPreset('isometric')}
               className={cn(
-                "min-h-[44px] px-2.5 py-1 rounded transition-colors focus-visible:ring-1 focus-visible:ring-amber-500 focus-visible:outline-none",
-                activePreset === 'isometric' ? "bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30" : "text-academic-400 hover:text-white"
+                "min-h-[44px] px-2.5 py-1 rounded-sm transition-colors focus-visible:ring-1 focus-visible:ring-specimen focus-visible:outline-none",
+                activePreset === 'isometric' ? "bg-specimen/20 text-specimen font-bold border border-specimen/30" : "text-white/40 hover:text-white"
               )}
             >
               Isometric
@@ -761,8 +761,8 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
             <button
               onClick={() => applyPreset('cutaway')}
               className={cn(
-                "min-h-[44px] px-2.5 py-1 rounded transition-colors focus-visible:ring-1 focus-visible:ring-amber-500 focus-visible:outline-none",
-                activePreset === 'cutaway' ? "bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30" : "text-academic-400 hover:text-white"
+                "min-h-[44px] px-2.5 py-1 rounded-sm transition-colors focus-visible:ring-1 focus-visible:ring-specimen focus-visible:outline-none",
+                activePreset === 'cutaway' ? "bg-specimen/20 text-specimen font-bold border border-specimen/30" : "text-white/40 hover:text-white"
               )}
             >
               Core
@@ -770,8 +770,8 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
             <button
               onClick={() => applyPreset('recirculation')}
               className={cn(
-                "min-h-[44px] px-2.5 py-1 rounded transition-colors focus-visible:ring-1 focus-visible:ring-amber-500 focus-visible:outline-none",
-                activePreset === 'recirculation' ? "bg-amber-500/20 text-amber-300 font-bold border border-amber-500/30" : "text-academic-400 hover:text-white"
+                "min-h-[44px] px-2.5 py-1 rounded-sm transition-colors focus-visible:ring-1 focus-visible:ring-specimen focus-visible:outline-none",
+                activePreset === 'recirculation' ? "bg-specimen/20 text-specimen font-bold border border-specimen/30" : "text-white/40 hover:text-white"
               )}
             >
               Recirc Loop
@@ -786,11 +786,11 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
             {...spring.press}
             {...silk.hover}
             onClick={() => setAutoRotate(!autoRotate)}
-            className="min-h-[44px] size-11 flex items-center justify-center rounded-lg bg-academic-900/90 hover:bg-academic-800 border border-academic-700/80 text-academic-300 backdrop-blur-md focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+            className="min-h-[44px] size-11 flex items-center justify-center rounded-sm bg-[#0d0d1a]/90 hover:bg-[#0d0d1a] border border-ink/20 text-white/50 backdrop-blur-md focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
             title={autoRotate ? 'Pause 3D Turntable Rotation' : 'Resume 3D Turntable Rotation'}
             aria-label={autoRotate ? 'Pause 3D Turntable Rotation' : 'Resume 3D Turntable Rotation'}
           >
-            {autoRotate ? <Pause className="size-3.5 text-amber-400" /> : <Play className="size-3.5 text-emerald-400" />}
+            {autoRotate ? <Pause className="size-3.5 text-specimen" /> : <Play className="size-3.5 text-reagent" />}
           </motion.button>
 
           {/* If in compact mode, provide link to open in laboratory workbench */}
@@ -799,7 +799,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
               {...spring.press}
               {...silk.hover}
               onClick={onExploreInLab}
-              className="min-h-[44px] px-3 py-1.5 rounded-lg bg-amber-500 hover:bg-amber-400 text-academic-950 text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="min-h-[44px] px-3 py-1.5 rounded-sm bg-specimen hover:bg-specimen/80 text-white text-xs font-mono font-bold flex items-center gap-1.5 shadow-sm focus-visible:ring-2 focus-visible:ring-specimen focus-visible:outline-none"
             >
               <Maximize2 className="size-3.5" />
               <span>Full Lab Instrument</span>
@@ -810,7 +810,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
       </div>
 
       {/* Non-intrusive Drag Interaction Hint (disappears on interaction) */}
-      <div className="absolute top-1/2 left-3 -translate-y-1/2 pointer-events-none opacity-40 hover:opacity-10 transition-opacity hidden md:flex items-center gap-1.5 text-[9px] font-mono text-academic-400">
+      <div className="absolute top-1/2 left-3 -translate-y-1/2 pointer-events-none opacity-40 hover:opacity-10 transition-opacity hidden md:flex items-center gap-1.5 text-[9px] font-mono text-white/40">
         <Rotate3d className="size-3" />
         <span>Drag to orbit 3D</span>
       </div>

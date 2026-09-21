@@ -5,12 +5,12 @@ export const DossierPrintView: React.FC = () => {
   const { personal, education, projects, activities } = profileData;
 
   return (
-    <div data-slot="dossier-print-view" className="print-only p-8 text-black bg-white max-w-4xl mx-auto font-sans text-xs">
+    <div data-slot="dossier-print-view" className="print-only p-8 text-black bg-white max-w-4xl mx-auto font-body text-xs">
       
       {/* Print Header */}
       <div className="border-b-2 border-black pb-4 mb-4 flex justify-between items-start">
         <div>
-          <h1 className="text-2xl font-bold font-serif uppercase tracking-tight text-black">
+          <h1 className="text-2xl font-bold font-display uppercase tracking-tight text-black">
             {personal.fullName} ({personal.preferredName})
           </h1>
           <p className="text-sm font-semibold text-gray-800 mt-0.5">
