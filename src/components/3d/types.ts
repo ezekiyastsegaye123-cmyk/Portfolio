@@ -6,6 +6,7 @@ export interface ReactorCore3DProps {
   compactMode?: boolean;
   backgroundMode?: boolean;
   hideHUD?: boolean;
+  initialViewMode?: ReactorViewMode;
   className?: string;
   height?: string | number;
   onExploreInLab?: () => void;

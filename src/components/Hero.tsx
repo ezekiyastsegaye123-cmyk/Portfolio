@@ -12,11 +12,12 @@ export const Hero: React.FC = () => {
       id="hero" 
       className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#080812]"
     >
-      {/* ═══════ LAYER 0: Full-Bleed 3D Reactor Background ═══════ */}
+      {/* ═══════ LAYER 0: Full-Bleed 3D Molecular Lattice Background ═══════ */}
       <div className="absolute inset-0 z-0">
         <ReactorCore3D
           compactMode={false}
           backgroundMode={true}
+          initialViewMode="molecular"
           temperature={480}
           closedLoopActive={true}
           height={undefined}
@@ -188,19 +189,23 @@ export const Hero: React.FC = () => {
                 <div className="flex items-center justify-between gap-3 pb-2.5 border-b border-white/10 text-[10px]">
                   <span className="flex items-center gap-1.5 text-specimen font-bold">
                     <span className="size-2 rounded-full bg-specimen animate-ping" />
-                    LIVE 3D SIMULATION CORE
+                    3D MOLECULAR LATTICE
                   </span>
-                  <span className="text-white/40">480°C · PYROLYSIS</span>
+                  <span className="text-white/40">LEVOGLUCOSAN · C₆H₁₀O₅</span>
                 </div>
 
                 <div className="mt-3 space-y-2 text-[11px]">
                   <div className="flex justify-between">
-                    <span className="text-white/40">Arrhenius Particle Swarm:</span>
-                    <span className="text-specimen font-semibold">Active Kinetics</span>
+                    <span className="text-white/40">Intermediate State:</span>
+                    <span className="text-white/90">Pyranose Ring Cleavage</span>
                   </div>
                   <div className="flex justify-between">
-                    <span className="text-white/40">Closed-Loop Recirculation:</span>
-                    <span className="text-reagent font-semibold">73.6% Autothermal</span>
+                    <span className="text-white/40">Molecular Dynamics:</span>
+                    <span className="text-specimen font-semibold">HOMO-LUMO Delocalization</span>
+                  </div>
+                  <div className="flex justify-between">
+                    <span className="text-white/40">Autothermal Pathway:</span>
+                    <span className="text-reagent font-semibold">73.6% Byproduct Reintegration</span>
                   </div>
                   <div className="flex justify-between">
                     <span className="text-white/40">Technical Advisory:</span>
@@ -217,7 +222,7 @@ export const Hero: React.FC = () => {
                     href="#reactor-instrument"
                     className="text-specimen hover:text-specimen/80 font-bold transition-colors"
                   >
-                    Lab Controls ↓
+                    Lab Workbench ↓
                   </a>
                 </div>
               </div>

@@ -65,7 +65,7 @@ export const ActivitiesSection: React.FC = () => {
         {/* Featured Marginalia / Human Voice: TEDx Speech Excerpt */}
         <motion.div 
           {...silk.entrance}
-          className="mb-12 p-6 sm:p-8 rounded-none rounded-tr-3xl bg-[#0d0d1a] text-white border border-ink/15 relative overflow-hidden shadow-lg"
+          className="mb-12 p-6 sm:p-8 rounded-none rounded-tr-3xl bg-[#0d0d1a] dark:bg-[#151525] text-white border-l-4 border-l-specimen border-t border-r border-b border-specimen/25 dark:border-specimen/40 relative overflow-hidden shadow-xl"
         >
           <div className="flex items-start gap-4">
             <div className="size-10 rounded-xl bg-specimen/20 text-specimen flex items-center justify-center shrink-0 border border-specimen/30">
@@ -77,11 +77,11 @@ export const ActivitiesSection: React.FC = () => {
                 <span>·</span>
                 <span>St. John Baptist De La Salle</span>
               </div>
-              <p className="font-display italic text-base sm:text-lg text-data-bg leading-relaxed">
+              <p className="font-display italic text-base sm:text-lg text-white/95 dark:text-white leading-relaxed">
                 “We often regard ancient African metallurgy and early alchemical traditions through a mystical or primitive lens. In truth, they were localized thermodynamic experiments conducted centuries before the periodic table was formalized. Computational chemistry does not detach us from the physical world — it equips us with the microscopic clarity needed to solve our most urgent resource and energy realities.”
               </p>
-              <div className="mt-3 font-mono text-xs text-ink/40">
-                — Ezekiyas Tsegaye, <span className="text-ink/15">“Ancient Chemistry: From the Crucible of Alchemy to Modern Atomic Synthesis”</span> (2024)
+              <div className="mt-3 font-mono text-xs text-white/70">
+                — Ezekiyas Tsegaye, <span className="text-white/90 font-medium">“Ancient Chemistry: From the Crucible of Alchemy to Modern Atomic Synthesis”</span> (2024)
               </div>
             </div>
           </div>

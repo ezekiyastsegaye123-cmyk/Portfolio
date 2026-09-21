@@ -39,6 +39,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
   compactMode = false,
   backgroundMode = false,
   hideHUD = false,
+  initialViewMode = 'reactor',
   className = '',
   height,
   onExploreInLab,
@@ -49,7 +50,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
   const [webGLSupported, setWebGLSupported] = useState<boolean>(true);
   const [isLoading, setIsLoading] = useState<boolean>(true);
   const [autoRotate, setAutoRotate] = useState<boolean>(true);
-  const [viewMode, setViewMode] = useState<ReactorViewMode>('reactor');
+  const [viewMode, setViewMode] = useState<ReactorViewMode>(initialViewMode);
   const [activePreset, setActivePreset] = useState<string>('isometric');
   const [fps, setFps] = useState<number>(60);
 
@@ -182,6 +183,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
 
     // 5. Build Reactor Core Hierarchy
     const reactorGroup = new THREE.Group();
+    reactorGroup.visible = initialViewMode === 'reactor';
     scene.add(reactorGroup);
     reactorGroupRef.current = reactorGroup;
 
@@ -348,7 +350,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
 
     // 8. Build Alternate Mode: Macromolecular Cleavage Lattice (Ball & Stick)
     const molecularGroup = new THREE.Group();
-    molecularGroup.visible = false;
+    molecularGroup.visible = initialViewMode === 'molecular';
     scene.add(molecularGroup);
     molecularGroupRef.current = molecularGroup;
 
@@ -414,12 +416,42 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
       molecularGroup.add(bondMesh);
     });
 
-    // Orbital cloud around intermediate
+    // Dual Delocalized Orbital Rings (Cyan and Specimen Gold)
     const orbitalGeo = new THREE.TorusGeometry(1.6, 0.02, 16, 64);
-    const orbitalMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.4 });
+    const orbitalMat = new THREE.MeshBasicMaterial({ color: 0x38bdf8, transparent: true, opacity: 0.45 });
     const orbitalMesh = new THREE.Mesh(orbitalGeo, orbitalMat);
     orbitalMesh.rotation.x = Math.PI / 3;
     molecularGroup.add(orbitalMesh);
+
+    const orbitalGeo2 = new THREE.TorusGeometry(1.75, 0.016, 16, 64);
+    const orbitalMat2 = new THREE.MeshBasicMaterial({ color: 0xc8553d, transparent: true, opacity: 0.4 });
+    const orbitalMesh2 = new THREE.Mesh(orbitalGeo2, orbitalMat2);
+    orbitalMesh2.rotation.x = -Math.PI / 4;
+    orbitalMesh2.rotation.y = Math.PI / 6;
+    molecularGroup.add(orbitalMesh2);
+
+    // Subtle delocalized electron cloud particles
+    const cloudCount = 120;
+    const cloudGeo = new THREE.BufferGeometry();
+    const cloudPositions = new Float32Array(cloudCount * 3);
+    for (let c = 0; c < cloudCount; c++) {
+      const theta = Math.random() * Math.PI * 2;
+      const phi = (Math.random() - 0.5) * Math.PI;
+      const rad = 1.2 + Math.random() * 0.7;
+      cloudPositions[c * 3] = rad * Math.cos(phi) * Math.cos(theta);
+      cloudPositions[c * 3 + 1] = rad * Math.sin(phi);
+      cloudPositions[c * 3 + 2] = rad * Math.cos(phi) * Math.sin(theta);
+    }
+    cloudGeo.setAttribute('position', new THREE.BufferAttribute(cloudPositions, 3));
+    const cloudMat = new THREE.PointsMaterial({
+      color: 0x38bdf8,
+      size: 0.045,
+      transparent: true,
+      opacity: 0.65,
+      blending: THREE.AdditiveBlending,
+    });
+    const cloudPoints = new THREE.Points(cloudGeo, cloudMat);
+    molecularGroup.add(cloudPoints);
 
     // Initial orientation
     reactorGroup.rotation.x = 0.15;
@@ -621,6 +653,13 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
       }
     }
   }, [viewMode]);
+
+  // Sync state if initialViewMode prop changes
+  useEffect(() => {
+    if (initialViewMode) {
+      setViewMode(initialViewMode);
+    }
+  }, [initialViewMode]);
 
   // Pointer Interaction Handlers (Safe Drag Orbit without Hijacking Page Scroll)
   const handlePointerDown = useCallback((e: React.PointerEvent) => {
