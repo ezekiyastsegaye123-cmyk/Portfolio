@@ -7,7 +7,7 @@ project:
 stack:
   frontend: React
   css_framework: Tailwind CSS
-  ui_library: Lucide Icons + Framer Motion
+  ui_library: Lucide Icons + Framer Motion + Three.js
   state_management: React Hooks
   backend: slotignored
   api_type: slotignored
@@ -44,6 +44,7 @@ tech_stack:
   - Vite
   - Framer Motion
   - Lucide React
+  - Three.js
 key_files:
   - package.json
   - README.md
@@ -51,6 +52,7 @@ key_files:
   - src/App.tsx
   - src/components/Hero.tsx
   - src/components/PyrolysisSimulator.tsx
+  - src/components/3d/ReactorCore3D.tsx
 commands:
   build: npm run build
   dev: npm run dev

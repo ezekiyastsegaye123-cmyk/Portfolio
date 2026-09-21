@@ -10,7 +10,7 @@ language: TypeScript
 # Stack
 # Framework: React
 # CSS: Tailwind CSS
-# UI Library: Lucide Icons + Framer Motion
+# UI Library: Lucide Icons + Framer Motion + Three.js
 # State: React Hooks
 # Hosting: Vercel + GitHub Pages
 # Build: Vite

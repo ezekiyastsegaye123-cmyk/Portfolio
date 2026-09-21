@@ -1,8 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
-import { ArrowDownRight, Award, FileText, FlaskConical, Gauge, Compass, MapPin } from 'lucide-react';
+import { ArrowDownRight, Award, FileText, FlaskConical, Gauge, Compass, MapPin, Rotate3d } from 'lucide-react';
 import { profileData } from '../data/profileData';
 import { silk, spring } from '../engine/motion';
+import { ReactorCore3D } from './3d/ReactorCore3D';
 
 export const Hero: React.FC = () => {
   return (
@@ -196,6 +197,28 @@ export const Hero: React.FC = () => {
                     <span className="text-academic-500">·</span>
                     <span className="text-emerald-400 font-semibold">Advised by Chemical Society of Ethiopia (CSE)</span>
                   </div>
+                </div>
+
+                {/* Interactive 3D Reactor Core Specimen Preview */}
+                <div className="rounded-xl overflow-hidden border border-academic-800/90 shadow-inner bg-academic-950">
+                  <div className="px-3 py-1.5 bg-academic-950 border-b border-academic-800/80 flex items-center justify-between text-[10px] font-mono text-academic-400">
+                    <span className="flex items-center gap-1.5 text-amber-400 font-semibold">
+                      <Rotate3d className="size-3 text-amber-400" />
+                      <span>3D REACTOR CORE SPECIMEN · 480°C</span>
+                    </span>
+                    <span className="text-academic-500">DRAG TO ROTATE</span>
+                  </div>
+                  <ReactorCore3D
+                    compactMode={true}
+                    temperature={480}
+                    closedLoopActive={true}
+                    height={210}
+                    className="border-0 rounded-none shadow-none"
+                    onExploreInLab={() => {
+                      const el = document.getElementById('reactor-instrument');
+                      if (el) el.scrollIntoView({ behavior: 'smooth' });
+                    }}
+                  />
                 </div>
 
                 {/* Key Chemical Engineering Metrics */}

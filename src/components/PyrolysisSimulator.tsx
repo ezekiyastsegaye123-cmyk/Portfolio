@@ -1,8 +1,9 @@
 import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
-import { Flame, Activity, Zap, CheckCircle2, FileText, ArrowRight, RefreshCw, Sliders } from 'lucide-react';
+import { Flame, Activity, Zap, CheckCircle2, FileText, ArrowRight, RefreshCw, Sliders, Rotate3d, Layers } from 'lucide-react';
 import { spring, silk } from '../engine/motion';
 import { cn } from '../lib/utils';
+import { ReactorCore3D } from './3d/ReactorCore3D';
 
 export const PyrolysisSimulator: React.FC = () => {
   const [temperature, setTemperature] = useState<number>(480);
@@ -76,7 +77,7 @@ export const PyrolysisSimulator: React.FC = () => {
   }, [temperature, closedLoopActive]);
 
   return (
-    <div data-slot="pyrolysis-simulator" className="p-6 sm:p-7 rounded-2xl bg-academic-950 text-white border border-amber-500/30 shadow-2xl relative overflow-hidden">
+    <div data-slot="pyrolysis-simulator" className="p-5 sm:p-7 rounded-2xl bg-academic-950 text-white border border-amber-500/30 shadow-2xl relative overflow-hidden">
       
       {/* Background Technical Grid Motif */}
       <div className="absolute inset-0 opacity-10 millimeter-grid pointer-events-none" />
@@ -122,92 +123,31 @@ export const PyrolysisSimulator: React.FC = () => {
         </motion.button>
       </div>
 
-      {/* Main Controls & Live Gauges */}
-      <div className="relative z-10 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6">
+      {/* Primary Section: 3D Reactor Chamber & Mass Yield Analytics */}
+      <div className="relative z-10 mt-6 grid grid-cols-1 lg:grid-cols-12 gap-6 items-stretch">
         
-        {/* Left Column: Temperature Slider & Kinetic Presets (7 cols) */}
-        <div className="lg:col-span-7 space-y-5">
-          <div>
-            <div className="flex justify-between items-baseline mb-2">
-              <label htmlFor="temp-slider" className="text-xs font-mono text-academic-400 uppercase tracking-wider flex items-center gap-1.5">
-                <Sliders className="size-3 text-amber-400" />
-                Reactor Temperature (T<sub>pyro</sub>)
-              </label>
-              <div className="text-2xl font-mono font-bold text-amber-400">
-                {temperature}°C
-                <span className="text-xs text-academic-500 font-normal ms-1">
-                  ({(temperature + 273.15).toFixed(1)} K)
-                </span>
-              </div>
-            </div>
-
-            <input
-              id="temp-slider"
-              type="range"
-              min="200"
-              max="900"
-              step="10"
-              value={temperature}
-              onChange={(e) => setTemperature(Number(e.target.value))}
-              aria-label="Reactor Temperature Slider"
-              className="w-full h-2 bg-academic-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
-            />
-
-            <div className="flex justify-between text-[10px] font-mono text-academic-500 mt-1">
-              <span>200°C (Hemicellulose)</span>
-              <span>480°C (Fast Pyrolysis)</span>
-              <span>900°C (Tar Cracking)</span>
-            </div>
-          </div>
-
-          {/* Quick Preset Buttons with min-h-[44px] */}
-          <div>
-            <span className="text-[11px] font-mono text-academic-400 block mb-2 uppercase tracking-wider">
-              Theoretical Kinetic Regimes:
+        {/* Left: Interactive 3D Reactor Core (7 cols) */}
+        <div className="lg:col-span-7 flex flex-col">
+          <div className="flex items-center justify-between mb-2">
+            <span className="text-xs font-mono uppercase tracking-wider text-amber-400 flex items-center gap-1.5">
+              <Rotate3d className="size-3.5 text-amber-400" />
+              Live 3D Reaction Chamber & Particle Kinetics
             </span>
-            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
-              {[
-                { label: 'Hemicellulose', temp: 280 },
-                { label: 'Fast Pyrolysis', temp: 480 },
-                { label: 'Syngas Loop', temp: 650 },
-                { label: 'Tar Cracking', temp: 800 },
-              ].map((preset) => (
-                <motion.button
-                  key={preset.temp}
-                  {...spring.press}
-                  {...silk.hover}
-                  onClick={() => setTemperature(preset.temp)}
-                  className={cn(
-                    "min-h-[44px] px-2.5 py-1.5 rounded-xl text-xs font-mono transition-all text-center border",
-                    "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
-                    temperature === preset.temp
-                      ? "bg-amber-500 text-academic-950 font-bold border-amber-400"
-                      : "bg-academic-900/80 text-academic-300 border-academic-800 hover:border-academic-700"
-                  )}
-                >
-                  {preset.label}
-                  <span className="block text-[10px] opacity-75">{preset.temp}°C</span>
-                </motion.button>
-              ))}
-            </div>
-          </div>
-
-          {/* Dynamic Mechanism Box */}
-          <div className="p-4 rounded-xl bg-academic-900/90 border border-academic-800 text-xs">
-            <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">
-              Active Decomposition Pathway:
+            <span className="text-[10px] font-mono text-academic-400 hidden sm:inline">
+              Three.js · Arrhenius Velocity Dynamic
             </span>
-            <p className="font-serif font-bold text-academic-100 text-sm">
-              {model.mechanism}
-            </p>
-            <div className="mt-2 text-[11px] text-academic-400 flex items-center gap-1.5">
-              <span className="font-mono text-amber-500">Species:</span> {model.dominantSpecies}
-            </div>
           </div>
+          
+          <ReactorCore3D
+            temperature={temperature}
+            closedLoopActive={closedLoopActive}
+            height={380}
+            className="flex-1 min-h-[340px]"
+          />
         </div>
 
-        {/* Right Column: Calculated Yields & Heat Balance (5 cols) */}
-        <div className="lg:col-span-5 p-4 rounded-xl bg-academic-900/70 border border-academic-800 flex flex-col justify-between space-y-4">
+        {/* Right: Calculated Yields & Heat Balance (5 cols) */}
+        <div className="lg:col-span-5 p-5 rounded-xl bg-academic-900/80 border border-academic-800 flex flex-col justify-between space-y-4">
           
           <div>
             <span className="text-[10px] font-mono uppercase tracking-wider text-academic-400 block mb-3">
@@ -290,6 +230,93 @@ export const PyrolysisSimulator: React.FC = () => {
 
       </div>
 
+      {/* Secondary Section: Temperature Controls & Dynamic Reaction Pathway */}
+      <div className="relative z-10 mt-6 pt-6 border-t border-academic-800 grid grid-cols-1 lg:grid-cols-12 gap-6">
+        
+        {/* Left: Temperature Slider & Kinetic Presets (7 cols) */}
+        <div className="lg:col-span-7 space-y-4">
+          <div>
+            <div className="flex justify-between items-baseline mb-2">
+              <label htmlFor="temp-slider" className="text-xs font-mono text-academic-400 uppercase tracking-wider flex items-center gap-1.5">
+                <Sliders className="size-3 text-amber-400" />
+                Reactor Temperature (T<sub>pyro</sub>)
+              </label>
+              <div className="text-2xl font-mono font-bold text-amber-400">
+                {temperature}°C
+                <span className="text-xs text-academic-500 font-normal ms-1">
+                  ({(temperature + 273.15).toFixed(1)} K)
+                </span>
+              </div>
+            </div>
+
+            <input
+              id="temp-slider"
+              type="range"
+              min="200"
+              max="900"
+              step="10"
+              value={temperature}
+              onChange={(e) => setTemperature(Number(e.target.value))}
+              aria-label="Reactor Temperature Slider"
+              className="w-full h-2.5 bg-academic-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
+            />
+
+            <div className="flex justify-between text-[10px] font-mono text-academic-500 mt-1">
+              <span>200°C (Hemicellulose)</span>
+              <span>480°C (Fast Pyrolysis)</span>
+              <span>900°C (Tar Cracking)</span>
+            </div>
+          </div>
+
+          {/* Quick Preset Buttons with min-h-[44px] */}
+          <div>
+            <span className="text-[11px] font-mono text-academic-400 block mb-2 uppercase tracking-wider">
+              Theoretical Kinetic Regimes:
+            </span>
+            <div className="grid grid-cols-2 sm:grid-cols-4 gap-2">
+              {[
+                { label: 'Hemicellulose', temp: 280 },
+                { label: 'Fast Pyrolysis', temp: 480 },
+                { label: 'Syngas Loop', temp: 650 },
+                { label: 'Tar Cracking', temp: 800 },
+              ].map((preset) => (
+                <motion.button
+                  key={preset.temp}
+                  {...spring.press}
+                  {...silk.hover}
+                  onClick={() => setTemperature(preset.temp)}
+                  className={cn(
+                    "min-h-[44px] px-2.5 py-1.5 rounded-xl text-xs font-mono transition-all text-center border",
+                    "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
+                    temperature === preset.temp
+                      ? "bg-amber-500 text-academic-950 font-bold border-amber-400"
+                      : "bg-academic-900/80 text-academic-300 border-academic-800 hover:border-academic-700"
+                  )}
+                >
+                  {preset.label}
+                  <span className="block text-[10px] opacity-75">{preset.temp}°C</span>
+                </motion.button>
+              ))}
+            </div>
+          </div>
+        </div>
+
+        {/* Right: Dynamic Mechanism Box (5 cols) */}
+        <div className="lg:col-span-5 p-4 rounded-xl bg-academic-900/90 border border-academic-800 text-xs flex flex-col justify-center">
+          <span className="text-[10px] font-mono uppercase tracking-wider text-amber-400 block mb-1">
+            Active Decomposition Pathway:
+          </span>
+          <p className="font-serif font-bold text-academic-100 text-sm leading-snug">
+            {model.mechanism}
+          </p>
+          <div className="mt-2 text-[11px] text-academic-400 flex items-center gap-1.5">
+            <span className="font-mono text-amber-500">Species:</span> {model.dominantSpecies}
+          </div>
+        </div>
+
+      </div>
+
     </div>
   );
 };
+

@@ -26,11 +26,12 @@ npm run preview    # preview
 - `src/App.tsx`
 - `src/components/Hero.tsx`
 - `src/components/PyrolysisSimulator.tsx`
+- `src/components/3d/ReactorCore3D.tsx`
 
 ## Stack
 - Framework: React
 - CSS: Tailwind CSS
-- UI Library: Lucide Icons + Framer Motion
+- UI Library: Lucide Icons + Framer Motion + Three.js
 - State: React Hooks
 - Hosting: Vercel + GitHub Pages
 - Build: Vite

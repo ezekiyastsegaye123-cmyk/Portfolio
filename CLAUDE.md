@@ -13,7 +13,7 @@ Admissions portfolio and computational chemistry workbench for Ezekiyas Tsegaye 
 - **Language:** TypeScript
 - **Framework:** React
 - **CSS:** Tailwind CSS
-- **UI Library:** Lucide Icons + Framer Motion
+- **UI Library:** Lucide Icons + Framer Motion + Three.js
 - **State:** React Hooks
 - **Hosting:** Vercel + GitHub Pages
 - **Build:** Vite
@@ -30,7 +30,7 @@ Admissions portfolio and computational chemistry workbench for Ezekiyas Tsegaye 
 
 ---
 
-*STATUS: SYNC ACTIVE — 2026-09-21T16:51:20.578Z*
+*STATUS: SYNC ACTIVE — 2026-09-21T17:18:00.343Z*
 <!-- faf:end -->
 
 ## Domain-Specific Guardrails & Core Directives
