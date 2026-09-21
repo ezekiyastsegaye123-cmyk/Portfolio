@@ -53,15 +53,15 @@ export const AdmissionsOverview: React.FC = () => {
               <span className="font-semibold text-academic-900 dark:text-white">{education.institution}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Compass className="w-4 h-4 text-blue-600 dark:text-blue-400" />
+              <Compass className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span>{education.status}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <MapPin className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />
+              <MapPin className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span>{personal.location}</span>
             </div>
             <div className="flex items-center gap-1.5">
-              <Sparkles className="w-4 h-4 text-purple-600 dark:text-purple-400" />
+              <Sparkles className="w-4 h-4 text-amber-600 dark:text-amber-400" />
               <span className="font-medium text-academic-800 dark:text-academic-200">Goal: {personal.futurePlan}</span>
             </div>
           </div>

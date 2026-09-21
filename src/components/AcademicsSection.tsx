@@ -71,7 +71,7 @@ export const AcademicsSection: React.FC = () => {
                   <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-1">
                     {education.gpa} / {education.gpaScale}
                   </div>
-                  <span className="text-xs font-semibold text-emerald-700 dark:text-emerald-400 mt-0.5 block">
+                  <span className="text-xs font-semibold text-amber-700 dark:text-amber-400 mt-0.5 block">
                     Unweighted Honor Roll
                   </span>
                 </div>
@@ -84,7 +84,7 @@ export const AcademicsSection: React.FC = () => {
                   <div className="text-2xl font-serif font-bold text-academic-950 dark:text-white mt-1">
                     558 / 600
                   </div>
-                  <span className="text-xs font-semibold text-purple-700 dark:text-purple-400 mt-0.5 block">
+                  <span className="text-xs font-semibold text-amber-700 dark:text-amber-400 mt-0.5 block">
                     Outstanding Achiever
                   </span>
                 </div>
