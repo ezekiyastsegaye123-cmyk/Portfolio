@@ -459,7 +459,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
     molecularGroup.rotation.x = 0.2;
     molecularGroup.rotation.y = 0.4;
 
-    const initialX = backgroundMode && width > 1024 ? 1.4 : 0;
+    const initialX = 0;
     reactorGroup.position.x = initialX;
     molecularGroup.position.x = initialX;
 
@@ -473,11 +473,6 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
           camera.aspect = newW / newH;
           camera.updateProjectionMatrix();
           renderer.setSize(newW, newH);
-          if (backgroundMode) {
-            const xPos = newW > 1024 ? 1.4 : 0;
-            if (reactorGroupRef.current) reactorGroupRef.current.position.x = xPos;
-            if (molecularGroupRef.current) molecularGroupRef.current.position.x = xPos;
-          }
         }
       }
     });
