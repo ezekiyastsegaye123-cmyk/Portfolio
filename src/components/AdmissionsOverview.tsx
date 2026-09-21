@@ -66,20 +66,20 @@ export const AdmissionsOverview: React.FC = () => {
             </div>
           </div>
 
-          <div className="flex items-center gap-3">
+          <div className="flex items-center gap-2">
             <a
               href={`mailto:${personal.email}`}
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-academic-700 dark:text-academic-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold text-academic-700 dark:text-academic-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <Mail className="w-3.5 h-3.5" />
               <span>{personal.email}</span>
             </a>
-            <span className="text-academic-300 dark:text-academic-700">|</span>
+            <span className="text-academic-300 dark:text-academic-700 select-none">|</span>
             <a
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center gap-1.5 text-xs font-semibold text-academic-700 dark:text-academic-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-2.5 py-1 rounded-lg text-xs font-semibold text-academic-700 dark:text-academic-200 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <GithubIcon className="w-3.5 h-3.5" />
               <span>GitHub</span>

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FlaskConical, Heart, ArrowUp } from 'lucide-react';
+import { FlaskConical, ArrowUp } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export const Footer: React.FC = () => {
@@ -26,10 +26,11 @@ export const Footer: React.FC = () => {
 
         <button
           onClick={scrollToTop}
-          className="inline-flex items-center gap-1.5 px-3 py-1 rounded-lg bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 hover:bg-academic-200 dark:hover:bg-academic-800 transition-colors"
+          aria-label="Scroll to top of page"
+          className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-2 rounded-xl bg-academic-100 dark:bg-academic-900 text-academic-700 dark:text-academic-300 hover:bg-academic-200 dark:hover:bg-academic-800 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
         >
           <span>Back to Top</span>
-          <ArrowUp className="w-3 h-3" />
+          <ArrowUp className="w-3.5 h-3.5" />
         </button>
 
       </div>
