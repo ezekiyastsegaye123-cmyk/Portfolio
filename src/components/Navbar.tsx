@@ -37,9 +37,6 @@ export const Navbar: React.FC<NavbarProps> = ({ darkMode, toggleDarkMode, onPrin
               <span className="font-display font-bold text-base sm:text-lg text-ink tracking-tight">
                 {profileData.personal.fullName}
               </span>
-              <span className="text-[11px] font-mono px-2 py-0.5 rounded-none bg-specimen/10 text-specimen font-bold border border-specimen/20 hidden sm:inline-flex items-center gap-1">
-                <Atom className="size-3 text-specimen" /> Chemistry + CS
-              </span>
             </div>
             <p className="text-[11px] font-mono text-ink/60">
               Common App Admissions Portfolio · Fall 2026 / 2027 · Rank 5/250
