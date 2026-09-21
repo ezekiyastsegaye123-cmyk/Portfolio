@@ -62,27 +62,35 @@ export const Hero: React.FC = () => {
                 <span>INTENDED MAJOR: {profileData.personal.intendedMajor.toUpperCase()}</span>
               </motion.div>
 
-              {/* Applicant Name */}
+              {/* Applicant Name — High-Contrast, Crisp, Authoritative */}
               <motion.h1 
                 variants={{
                   hidden: { opacity: 0, y: 14 },
                   visible: { opacity: 1, y: 0, transition: { duration: 0.45, ease: [0.16, 1, 0.3, 1] } },
                 }}
-                className="text-4xl sm:text-5xl lg:text-6xl font-display font-bold text-white tracking-[-0.02em] leading-[1.05]"
+                className="font-body tracking-tight leading-[1.04]"
               >
                 <div className="flex items-center gap-3 sm:gap-4 flex-wrap">
-                  <span>{profileData.personal.fullName}</span>
+                  <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.9)]">
+                    {profileData.personal.fullName}
+                  </span>
                   <span 
-                    className="inline-flex items-center justify-center p-2 rounded-sm bg-white/[0.06] border border-specimen/40 text-specimen shadow-[0_0_20px_rgba(37,99,235,0.25)] relative group hover:border-specimen transition-colors"
+                    className="inline-flex items-center justify-center p-2 rounded-sm bg-specimen/20 border border-specimen/50 text-specimen shadow-[0_0_24px_rgba(200,85,61,0.4)] relative group hover:border-specimen transition-colors shrink-0"
                     title="Computational Chemistry & Scientific ML"
                   >
                     <Atom className="size-6 sm:size-7 text-specimen animate-[spin_12s_linear_infinite]" />
                     <span className="absolute -top-1 -right-1 size-2 rounded-full bg-reagent animate-pulse" />
                   </span>
                 </div>
-                <span className="block text-white/35 font-display font-normal text-2xl sm:text-3xl lg:text-4xl mt-1">
-                  ({profileData.personal.preferredName})
-                </span>
+                
+                <div className="mt-2.5 flex items-center gap-3 flex-wrap">
+                  <span className="text-2xl sm:text-3xl lg:text-4xl font-body font-semibold text-specimen drop-shadow-sm">
+                    ({profileData.personal.preferredName})
+                  </span>
+                  <span className="text-[11px] font-mono font-semibold px-2.5 py-0.5 rounded-sm bg-white/10 text-white/90 border border-white/20 uppercase tracking-wider">
+                    Gap Year Researcher · Rank 5/250
+                  </span>
+                </div>
               </motion.h1>
 
               {/* Concise Focus */}
