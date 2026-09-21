@@ -1,7 +1,9 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import { Mail, MapPin, FileText, ArrowUpRight, ShieldCheck, Printer } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { profileData } from '../data/profileData';
+import { spring, silk } from '../engine/motion';
 
 interface ContactSectionProps {
   onPrintDossier: () => void;
@@ -33,7 +35,9 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
           <div className="mt-10 grid grid-cols-1 md:grid-cols-3 gap-4">
             
             {/* Direct Email Card */}
-            <a
+            <motion.a
+              {...silk.hover}
+              {...spring.press}
               href={`mailto:${personal.email}`}
               className="p-5 rounded-xl bg-academic-50 dark:bg-academic-950 border border-academic-200 dark:border-academic-800 hover:border-amber-400 dark:hover:border-amber-500 transition-all flex flex-col items-center text-center group focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
@@ -46,10 +50,12 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               <span className="text-xs sm:text-sm font-mono font-bold text-academic-900 dark:text-white mt-1 break-all">
                 {personal.email}
               </span>
-            </a>
+            </motion.a>
 
             {/* GitHub Card */}
-            <a
+            <motion.a
+              {...silk.hover}
+              {...spring.press}
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
@@ -64,10 +70,13 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               <span className="text-xs sm:text-sm font-mono font-bold text-academic-900 dark:text-white mt-1 flex items-center gap-1">
                 GitHub Repositories <ArrowUpRight className="size-3.5 text-academic-400" />
               </span>
-            </a>
+            </motion.a>
 
             {/* Location & School */}
-            <div className="p-5 rounded-xl bg-academic-50 dark:bg-academic-950 border border-academic-200 dark:border-academic-800 flex flex-col items-center text-center">
+            <motion.div
+              {...silk.hover}
+              className="p-5 rounded-xl bg-academic-50 dark:bg-academic-950 border border-academic-200 dark:border-academic-800 flex flex-col items-center text-center"
+            >
               <div className="size-10 rounded-xl bg-academic-200 dark:bg-academic-800 text-academic-700 dark:text-academic-300 flex items-center justify-center mb-3">
                 <MapPin className="size-5" />
               </div>
@@ -77,7 +86,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               <span className="text-xs sm:text-sm font-mono font-bold text-academic-900 dark:text-white mt-1">
                 Addis Ababa, Ethiopia (UTC+3)
               </span>
-            </div>
+            </motion.div>
 
           </div>
 
@@ -88,13 +97,15 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               <span>Secondary school counselor materials and official transcripts verified via school dispatch.</span>
             </div>
 
-            <button
+            <motion.button
+              {...spring.press}
+              {...silk.hover}
               onClick={onPrintDossier}
               className="min-h-[44px] inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-xs font-mono font-bold bg-academic-950 dark:bg-white text-white dark:text-academic-950 hover:bg-academic-800 dark:hover:bg-academic-100 transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <Printer className="size-4 text-amber-400 dark:text-amber-600" />
               <span>Print Verified Admissions Dossier (PDF)</span>
-            </button>
+            </motion.button>
           </div>
 
         </div>

@@ -1,6 +1,9 @@
 import React from 'react';
-import { Users, BookOpen, Mic, Cpu, Lightbulb, ChevronRight, Quote, Sparkles } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Users, BookOpen, Mic, Cpu, Lightbulb, ChevronRight, Quote } from 'lucide-react';
 import { profileData } from '../data/profileData';
+import { spring, silk } from '../engine/motion';
+import { cn } from '../lib/utils';
 
 export const ActivitiesSection: React.FC = () => {
   const { activities } = profileData;
@@ -60,7 +63,10 @@ export const ActivitiesSection: React.FC = () => {
         </div>
 
         {/* Featured Marginalia / Human Voice: TEDx Speech Excerpt */}
-        <div className="mb-12 p-6 sm:p-8 rounded-2xl bg-academic-900 text-white border border-academic-800 relative overflow-hidden shadow-lg">
+        <motion.div 
+          {...silk.entrance}
+          className="mb-12 p-6 sm:p-8 rounded-2xl bg-academic-900 text-white border border-academic-800 relative overflow-hidden shadow-lg"
+        >
           <div className="flex items-start gap-4">
             <div className="size-10 rounded-xl bg-amber-500/20 text-amber-400 flex items-center justify-center shrink-0 border border-amber-500/30">
               <Quote className="size-5" />
@@ -79,19 +85,23 @@ export const ActivitiesSection: React.FC = () => {
               </div>
             </div>
           </div>
-        </div>
+        </motion.div>
 
         {/* Activities List Cards Styled as Structured Fieldwork Entries */}
         <div className="space-y-6">
           {activities.map((activity, index) => (
-            <div
+            <motion.div
               key={activity.id}
+              {...silk.hover}
               className="p-6 sm:p-8 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-all flex flex-col md:flex-row md:items-start justify-between gap-6"
             >
               {/* Left Details */}
               <div className="flex-1">
                 <div className="flex flex-wrap items-center gap-2 mb-2 font-mono text-xs">
-                  <span className={`inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md font-bold border uppercase tracking-wider ${getCategoryBadge(activity.category)}`}>
+                  <span className={cn(
+                    "inline-flex items-center gap-1.5 px-2.5 py-0.5 rounded-md font-bold border uppercase tracking-wider",
+                    getCategoryBadge(activity.category)
+                  )}>
                     {getCategoryIcon(activity.category)}
                     {activity.category}
                   </span>
@@ -143,7 +153,7 @@ export const ActivitiesSection: React.FC = () => {
                 </div>
               </div>
 
-            </div>
+            </motion.div>
           ))}
         </div>
 

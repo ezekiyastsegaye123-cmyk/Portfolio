@@ -2,6 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { motion } from 'framer-motion';
 import { Flame, Activity, Zap, CheckCircle2, FileText, ArrowRight, RefreshCw, Sliders } from 'lucide-react';
 import { spring, silk } from '../engine/motion';
+import { cn } from '../lib/utils';
 
 export const PyrolysisSimulator: React.FC = () => {
   const [temperature, setTemperature] = useState<number>(480);
@@ -36,7 +37,6 @@ export const PyrolysisSimulator: React.FC = () => {
     }
 
     // Thermal efficiency: Closed loop achieves 73.6% around 480-550°C
-    const baseEfficiency = closedLoopActive ? 73.6 : 41.2;
     const effVariance = closedLoopActive ? (temperature >= 450 && temperature <= 600 ? 73.6 : 68.4) : 38.5;
 
     // Mechanism description
@@ -79,13 +79,7 @@ export const PyrolysisSimulator: React.FC = () => {
     <div data-slot="pyrolysis-simulator" className="p-6 sm:p-7 rounded-2xl bg-academic-950 text-white border border-amber-500/30 shadow-2xl relative overflow-hidden">
       
       {/* Background Technical Grid Motif */}
-      <div 
-        className="absolute inset-0 opacity-10 pointer-events-none"
-        style={{
-          backgroundImage: 'radial-gradient(circle at 1px 1px, #d97706 1px, transparent 0)',
-          backgroundSize: '24px 24px'
-        }}
-      />
+      <div className="absolute inset-0 opacity-10 millimeter-grid pointer-events-none" />
 
       {/* Console Header */}
       <div className="relative z-10 flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-academic-800">
@@ -108,17 +102,21 @@ export const PyrolysisSimulator: React.FC = () => {
           </div>
         </div>
 
-        {/* Closed-Loop Toggle */}
-        <button
+        {/* Closed-Loop Toggle with min-h-[44px] */}
+        <motion.button
+          {...spring.press}
+          {...silk.hover}
           onClick={() => setClosedLoopActive(!closedLoopActive)}
-          className={`px-3 py-1.5 rounded-lg text-xs font-mono font-bold transition-all border ${
+          className={cn(
+            "min-h-[44px] px-4 py-2 rounded-xl text-xs font-mono font-bold transition-all border",
+            "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
             closedLoopActive
-              ? 'bg-amber-500/20 border-amber-500 text-amber-300 shadow-[0_0_15px_rgba(217,119,6,0.3)]'
-              : 'bg-academic-800/80 border-academic-700 text-academic-400'
-          }`}
+              ? "bg-amber-500/20 border-amber-500 text-amber-300 shadow-[0_0_15px_rgba(217,119,6,0.3)]"
+              : "bg-academic-800/80 border-academic-700 text-academic-400"
+          )}
         >
           {closedLoopActive ? '● Closed-Loop: 73.6% Autothermal' : '○ Open-Loop: 41.2% (Conventional)'}
-        </button>
+        </motion.button>
       </div>
 
       {/* Main Controls & Live Gauges */}
@@ -148,6 +146,7 @@ export const PyrolysisSimulator: React.FC = () => {
               step="10"
               value={temperature}
               onChange={(e) => setTemperature(Number(e.target.value))}
+              aria-label="Reactor Temperature Slider"
               className="w-full h-2 bg-academic-800 rounded-lg appearance-none cursor-pointer accent-amber-500 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-amber-500"
             />
 
@@ -158,7 +157,7 @@ export const PyrolysisSimulator: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Preset Buttons */}
+          {/* Quick Preset Buttons with min-h-[44px] */}
           <div>
             <span className="text-[11px] font-mono text-academic-400 block mb-2 uppercase tracking-wider">
               Theoretical Kinetic Regimes:
@@ -170,18 +169,22 @@ export const PyrolysisSimulator: React.FC = () => {
                 { label: 'Syngas Loop', temp: 650 },
                 { label: 'Tar Cracking', temp: 800 },
               ].map((preset) => (
-                <button
+                <motion.button
                   key={preset.temp}
+                  {...spring.press}
+                  {...silk.hover}
                   onClick={() => setTemperature(preset.temp)}
-                  className={`px-2.5 py-1.5 rounded-lg text-xs font-mono transition-all text-center border ${
+                  className={cn(
+                    "min-h-[44px] px-2.5 py-1.5 rounded-xl text-xs font-mono transition-all text-center border",
+                    "focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
                     temperature === preset.temp
-                      ? 'bg-amber-500 text-academic-950 font-bold border-amber-400'
-                      : 'bg-academic-900/80 text-academic-300 border-academic-800 hover:border-academic-700'
-                  }`}
+                      ? "bg-amber-500 text-academic-950 font-bold border-amber-400"
+                      : "bg-academic-900/80 text-academic-300 border-academic-800 hover:border-academic-700"
+                  )}
                 >
                   {preset.label}
                   <span className="block text-[10px] opacity-75">{preset.temp}°C</span>
-                </button>
+                </motion.button>
               ))}
             </div>
           </div>
@@ -261,21 +264,23 @@ export const PyrolysisSimulator: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-2 text-[11px] font-mono">
-              <span className={`size-2 rounded-full ${model.isAutothermal ? 'bg-emerald-400 animate-ping' : 'bg-amber-400'}`} />
+              <span className={cn("size-2 rounded-full", model.isAutothermal ? "bg-emerald-400 animate-ping" : "bg-amber-400")} />
               <span className={model.isAutothermal ? 'text-emerald-300 font-bold' : 'text-academic-400'}>
                 {model.isAutothermal ? 'Autothermal Equilibrium Met' : 'Requires Supplemental Preheat'}
               </span>
             </div>
 
-            <a
+            <motion.a
+              {...spring.press}
+              {...silk.hover}
               href="/pyrolysis-framework.pdf"
               target="_blank"
               rel="noopener noreferrer"
-              className="mt-2 w-full py-2 px-3 rounded-lg text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-academic-950 transition-colors flex items-center justify-center gap-1.5"
+              className="mt-2 min-h-[44px] w-full py-2.5 px-3 rounded-xl text-xs font-mono font-bold bg-amber-500 hover:bg-amber-400 text-academic-950 transition-colors flex items-center justify-center gap-1.5 focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <FileText className="size-3.5" />
               <span>Inspect 16-Page Paper Calculations</span>
-            </a>
+            </motion.a>
           </div>
 
         </div>

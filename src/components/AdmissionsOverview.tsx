@@ -1,7 +1,10 @@
 import React from 'react';
-import { Award, GraduationCap, Compass, MapPin, Mail, Sparkles, CheckCircle2, ShieldCheck, Binary } from 'lucide-react';
+import { motion } from 'framer-motion';
+import { Award, GraduationCap, Compass, MapPin, Mail, Sparkles, ShieldCheck } from 'lucide-react';
 import { GithubIcon } from './Icons';
 import { profileData } from '../data/profileData';
+import { spring, silk } from '../engine/motion';
+import { cn } from '../lib/utils';
 
 export const AdmissionsOverview: React.FC = () => {
   const { education, personal } = profileData;
@@ -53,7 +56,7 @@ export const AdmissionsOverview: React.FC = () => {
               <span>·</span>
               <span>EXECUTIVE CANDIDATE DOSSIER</span>
             </div>
-            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-academic-900 dark:text-white mt-1">
+            <h2 className="text-2xl sm:text-3xl font-serif font-bold text-academic-950 dark:text-white mt-1">
               At-a-Glance Verified Qualifications
             </h2>
           </div>
@@ -66,9 +69,10 @@ export const AdmissionsOverview: React.FC = () => {
         {/* 4 Core Ledger Cards with Precision Ruling */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
           {ledgerMetrics.map((item, idx) => (
-            <div
+            <motion.div
               key={idx}
-              className="p-5 rounded-xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-colors"
+              {...silk.hover}
+              className="p-5 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm flex flex-col justify-between hover:border-amber-400/80 dark:hover:border-amber-500/80 transition-colors"
             >
               <div>
                 <div className="flex items-center justify-between text-[10px] font-mono text-academic-400 mb-2">
@@ -78,7 +82,7 @@ export const AdmissionsOverview: React.FC = () => {
                 <div className="text-xs font-mono font-semibold text-academic-600 dark:text-academic-300">
                   {item.label}
                 </div>
-                <div className={`text-3xl font-serif font-bold mt-1 tracking-tight ${item.accent}`}>
+                <div className={cn("text-3xl font-serif font-bold mt-1 tracking-tight", item.accent)}>
                   {item.value}
                 </div>
                 <div className="text-xs font-semibold text-academic-900 dark:text-white mt-1">
@@ -88,12 +92,12 @@ export const AdmissionsOverview: React.FC = () => {
               <div className="mt-4 pt-3 border-t border-academic-100 dark:border-academic-800/80 text-[11px] text-academic-500 dark:text-academic-400 font-sans">
                 {item.subtext}
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
 
         {/* Candidate Origin & Institution Verification Strip */}
-        <div className="mt-6 p-4 sm:p-5 rounded-xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+        <div className="mt-6 p-4 sm:p-5 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
           <div className="flex flex-wrap items-center gap-y-2 gap-x-6 text-xs text-academic-700 dark:text-academic-300">
             <div className="flex items-center gap-2">
               <GraduationCap className="size-4 text-amber-600 dark:text-amber-400" />
@@ -114,23 +118,27 @@ export const AdmissionsOverview: React.FC = () => {
           </div>
 
           <div className="flex items-center gap-3 self-end md:self-center">
-            <a
+            <motion.a
+              {...spring.press}
+              {...silk.hover}
               href={`mailto:${personal.email}`}
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <Mail className="size-3.5" />
               <span>{personal.email}</span>
-            </a>
+            </motion.a>
             <span className="text-academic-300 dark:text-academic-700 select-none">|</span>
-            <a
+            <motion.a
+              {...spring.press}
+              {...silk.hover}
               href={personal.github}
               target="_blank"
               rel="noopener noreferrer"
-              className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
+              className="min-h-[44px] inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl text-xs font-mono font-medium text-academic-700 dark:text-academic-300 hover:text-amber-600 dark:hover:text-amber-400 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
               <GithubIcon className="size-3.5" />
               <span>GitHub</span>
-            </a>
+            </motion.a>
           </div>
         </div>
 
