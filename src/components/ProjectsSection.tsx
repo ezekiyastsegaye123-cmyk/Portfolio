@@ -4,6 +4,7 @@ import { FlaskConical, ArrowUpRight, FileText } from 'lucide-react';
 import { profileData, Project } from '../data/profileData';
 import { ProjectModal } from './ProjectModal';
 import { silk, spring } from '../engine/motion';
+import { cn } from '../lib/utils';
 
 export const ProjectsSection: React.FC = () => {
   const [selectedCategory, setSelectedCategory] = useState<string>('All');
@@ -16,14 +17,14 @@ export const ProjectsSection: React.FC = () => {
     : profileData.projects.filter(p => p.category === selectedCategory);
 
   return (
-    <section id="research" className="py-16 md:py-24 border-b border-academic-200 dark:border-academic-800 bg-academic-50/50 dark:bg-academic-950">
+    <section data-slot="projects-section" id="research" className="py-16 md:py-24 border-b border-academic-200 dark:border-academic-800 bg-academic-50/50 dark:bg-academic-950">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Header */}
         <div className="flex flex-col md:flex-row md:items-end justify-between mb-10 gap-6">
           <div className="max-w-3xl">
             <span className="text-xs font-bold uppercase tracking-wider text-amber-700 dark:text-amber-400 flex items-center gap-1.5">
-              <FlaskConical className="w-3.5 h-3.5" />
+              <FlaskConical className="size-3.5" />
               Scientific Inquiry & Engineered Systems
             </span>
             <h2 className="text-3xl sm:text-4xl font-serif font-bold text-academic-950 dark:text-white mt-1 tracking-[-0.01em] leading-snug">
@@ -40,22 +41,26 @@ export const ProjectsSection: React.FC = () => {
             role="tablist"
             aria-label="Project Categories"
           >
-            {categories.map((cat) => (
-              <motion.button
-                key={cat}
-                {...silk.press}
-                onClick={() => setSelectedCategory(cat)}
-                role="tab"
-                aria-selected={selectedCategory === cat}
-                className={`min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none ${
-                  selectedCategory === cat
-                    ? 'bg-white dark:bg-academic-800 text-academic-950 dark:text-white shadow-sm border border-academic-200 dark:border-academic-700'
-                    : 'text-academic-600 dark:text-academic-400 hover:text-academic-950 dark:hover:text-white'
-                }`}
-              >
-                {cat}
-              </motion.button>
-            ))}
+            {categories.map((cat) => {
+              const isSelected = selectedCategory === cat;
+              return (
+                <motion.button
+                  key={cat}
+                  {...silk.press}
+                  onClick={() => setSelectedCategory(cat)}
+                  role="tab"
+                  aria-selected={isSelected}
+                  className={cn(
+                    "min-h-[44px] px-3.5 py-2 rounded-xl text-xs font-semibold transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none",
+                    isSelected
+                      ? "bg-white dark:bg-academic-800 text-academic-950 dark:text-white shadow-sm border border-academic-200 dark:border-academic-700"
+                      : "text-academic-600 dark:text-academic-400 hover:text-academic-950 dark:hover:text-white"
+                  )}
+                >
+                  {cat}
+                </motion.button>
+              );
+            })}
           </div>
         </div>
 
@@ -74,7 +79,7 @@ export const ProjectsSection: React.FC = () => {
                   {/* Top Badge & Role */}
                   <div className="flex items-center justify-between gap-2 mb-3">
                     <span className="text-xs font-semibold px-2.5 py-0.5 rounded-full bg-amber-50 dark:bg-amber-950/40 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 flex items-center gap-1">
-                      <FlaskConical className="w-3 h-3" /> {project.category}
+                      <FlaskConical className="size-3" /> {project.category}
                     </span>
                     <span className="text-xs text-academic-500 font-mono">
                       {project.timeline}
@@ -98,7 +103,7 @@ export const ProjectsSection: React.FC = () => {
                   <div className="mt-4 pt-4 border-t border-academic-100 dark:border-academic-800/80 space-y-2">
                     {project.metrics.map((metric, idx) => (
                       <div key={idx} className="flex items-center gap-2 text-xs text-academic-700 dark:text-academic-300 font-medium">
-                        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 shrink-0" />
+                        <span className="size-1.5 rounded-full bg-amber-500 shrink-0" />
                         <span>{metric}</span>
                       </div>
                     ))}
@@ -130,7 +135,7 @@ export const ProjectsSection: React.FC = () => {
                     className="min-h-[44px] inline-flex items-center gap-1.5 text-xs font-bold text-amber-700 dark:text-amber-400 group-hover:translate-x-0.5 transition-transform focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none rounded-lg px-2 py-1 -mx-2"
                   >
                     <span>Explore Case Study & Architecture</span>
-                    <ArrowUpRight className="w-4 h-4" />
+                    <ArrowUpRight className="size-4" />
                   </motion.button>
 
                   {project.links?.paper && (
@@ -141,7 +146,7 @@ export const ProjectsSection: React.FC = () => {
                       rel="noopener noreferrer"
                       className="min-h-[44px] inline-flex items-center gap-1.5 px-3 py-2 rounded-xl text-xs font-semibold bg-amber-50 dark:bg-amber-950/60 text-amber-800 dark:text-amber-300 border border-amber-200 dark:border-amber-800 hover:bg-amber-100 dark:hover:bg-amber-900/60 transition-colors focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
                     >
-                      <FileText className="w-3.5 h-3.5" />
+                      <FileText className="size-3.5" />
                       <span>Technical Paper (PDF)</span>
                     </motion.a>
                   )}

@@ -2,10 +2,10 @@ import React from 'react';
 import { profileData } from '../data/profileData';
 
 export const DossierPrintView: React.FC = () => {
-  const { personal, education, projects, activities, stats } = profileData;
+  const { personal, education, projects, activities } = profileData;
 
   return (
-    <div className="print-only p-8 text-black bg-white max-w-4xl mx-auto font-sans text-xs">
+    <div data-slot="dossier-print-view" className="print-only p-8 text-black bg-white max-w-4xl mx-auto font-sans text-xs">
       
       {/* Print Header */}
       <div className="border-b-2 border-black pb-4 mb-4 flex justify-between items-start">
@@ -55,7 +55,7 @@ export const DossierPrintView: React.FC = () => {
         </h2>
         <div className="grid grid-cols-2 gap-2 text-[11px]">
           {education.honors.map((h, idx) => (
-            <div key={idx} className="border-l-2 border-black pl-2">
+            <div key={idx} className="border-l-2 border-black ps-2">
               <span className="font-bold">{h.title}</span> ({h.scope}, {h.grade})
               {h.score && <span className="text-gray-700"> — {h.score}</span>}
               <p className="text-gray-600 text-[10px]">{h.description}</p>

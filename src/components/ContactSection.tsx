@@ -11,7 +11,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
   const { personal } = profileData;
 
   return (
-    <section id="contact" className="py-16 md:py-24 bg-academic-100/50 dark:bg-academic-900/40">
+    <section data-slot="contact-section" id="contact" className="py-16 md:py-24 bg-academic-100/50 dark:bg-academic-900/40">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         <div className="max-w-4xl mx-auto p-6 sm:p-10 rounded-2xl bg-white dark:bg-academic-900 border border-academic-200 dark:border-academic-800 shadow-sm">
@@ -35,8 +35,8 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               href={`mailto:${personal.email}`}
               className="p-5 rounded-xl bg-academic-50 dark:bg-academic-800/60 border border-academic-200 dark:border-academic-700/70 hover:border-amber-400 dark:hover:border-amber-500 transition-all flex flex-col items-center text-center group focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <Mail className="w-5 h-5" />
+              <div className="size-10 rounded-xl bg-amber-100 dark:bg-amber-950/60 text-amber-700 dark:text-amber-400 flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <Mail className="size-5" />
               </div>
               <span className="text-xs font-semibold text-academic-500 dark:text-academic-400">
                 Direct Applicant Email
@@ -53,21 +53,21 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               rel="noopener noreferrer"
               className="p-5 rounded-xl bg-academic-50 dark:bg-academic-800/60 border border-academic-200 dark:border-academic-700/70 hover:border-amber-400 dark:hover:border-amber-500 transition-all flex flex-col items-center text-center group focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
-              <div className="w-10 h-10 rounded-xl bg-academic-200 dark:bg-academic-700 text-academic-800 dark:text-white flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
-                <GithubIcon className="w-5 h-5" />
+              <div className="size-10 rounded-xl bg-academic-200 dark:bg-academic-700 text-academic-800 dark:text-white flex items-center justify-center mb-3 group-hover:scale-105 transition-transform">
+                <GithubIcon className="size-5" />
               </div>
               <span className="text-xs font-semibold text-academic-500 dark:text-academic-400">
                 Code & Repositories
               </span>
               <span className="text-sm font-bold text-academic-900 dark:text-white mt-1 flex items-center gap-1">
-                GitHub Profile <ArrowUpRight className="w-3.5 h-3.5 text-academic-400" />
+                GitHub Profile <ArrowUpRight className="size-3.5 text-academic-400" />
               </span>
             </a>
 
             {/* Location & School */}
             <div className="p-5 rounded-xl bg-academic-50 dark:bg-academic-800/60 border border-academic-200 dark:border-academic-700/70 flex flex-col items-center text-center">
-              <div className="w-10 h-10 rounded-xl bg-academic-200/80 dark:bg-academic-700/70 text-academic-700 dark:text-academic-300 flex items-center justify-center mb-3">
-                <MapPin className="w-5 h-5" />
+              <div className="size-10 rounded-xl bg-academic-200/80 dark:bg-academic-700/70 text-academic-700 dark:text-academic-300 flex items-center justify-center mb-3">
+                <MapPin className="size-5" />
               </div>
               <span className="text-xs font-semibold text-academic-500 dark:text-academic-400">
                 Origin & School
@@ -89,7 +89,7 @@ export const ContactSection: React.FC<ContactSectionProps> = ({ onPrintDossier }
               onClick={onPrintDossier}
               className="min-h-[44px] inline-flex items-center gap-2 px-6 py-2.5 rounded-xl text-sm font-bold bg-academic-900 dark:bg-white text-white dark:text-academic-950 hover:bg-academic-800 dark:hover:bg-academic-100 transition-all shadow-sm focus-visible:ring-2 focus-visible:ring-amber-500 focus-visible:outline-none"
             >
-              <FileText className="w-4 h-4 text-amber-500 dark:text-amber-600" />
+              <FileText className="size-4 text-amber-500 dark:text-amber-600" />
               <span>Print Official Candidate Dossier (PDF)</span>
             </button>
           </div>

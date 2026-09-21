@@ -1,5 +1,5 @@
 import React from 'react';
-import { Award, Users, BookOpen, Mic, Cpu, Lightbulb, CheckCircle2, ChevronRight } from 'lucide-react';
+import { Users, BookOpen, Mic, Cpu, Lightbulb, ChevronRight } from 'lucide-react';
 import { profileData } from '../data/profileData';
 
 export const ActivitiesSection: React.FC = () => {
@@ -8,20 +8,20 @@ export const ActivitiesSection: React.FC = () => {
   const getCategoryIcon = (category: string) => {
     switch (category) {
       case 'Leadership':
-        return <Users className="w-4 h-4 text-amber-600 dark:text-amber-400" />;
+        return <Users className="size-4 text-amber-600 dark:text-amber-400" />;
       case 'Teaching':
-        return <BookOpen className="w-4 h-4 text-blue-600 dark:text-blue-400" />;
+        return <BookOpen className="size-4 text-amber-600 dark:text-amber-400" />;
       case 'Training & Fellowship':
-        return <Cpu className="w-4 h-4 text-purple-600 dark:text-purple-400" />;
+        return <Cpu className="size-4 text-amber-600 dark:text-amber-400" />;
       case 'Public Speaking':
-        return <Mic className="w-4 h-4 text-emerald-600 dark:text-emerald-400" />;
+        return <Mic className="size-4 text-amber-600 dark:text-amber-400" />;
       default:
-        return <Lightbulb className="w-4 h-4 text-amber-600" />;
+        return <Lightbulb className="size-4 text-amber-600" />;
     }
   };
 
   return (
-    <section id="activities" className="py-16 md:py-24 border-b border-academic-200 dark:border-academic-800">
+    <section data-slot="activities-section" id="activities" className="py-16 md:py-24 border-b border-academic-200 dark:border-academic-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         
         {/* Section Header */}
@@ -75,7 +75,7 @@ export const ActivitiesSection: React.FC = () => {
                 <div className="mt-4 space-y-2">
                   {activity.keyAchievements.map((ach, idx) => (
                     <div key={idx} className="flex items-start gap-2 text-xs sm:text-sm text-academic-700 dark:text-academic-200">
-                      <ChevronRight className="w-3.5 h-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
+                      <ChevronRight className="size-3.5 text-amber-600 dark:text-amber-400 shrink-0 mt-0.5" />
                       <span>{ach}</span>
                     </div>
                   ))}

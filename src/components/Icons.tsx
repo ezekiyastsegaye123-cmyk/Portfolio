@@ -1,7 +1,8 @@
 import React from 'react';
 
-export const GithubIcon: React.FC<{ className?: string }> = ({ className = "w-4 h-4" }) => (
+export const GithubIcon: React.FC<{ className?: string }> = ({ className = "size-4" }) => (
   <svg
+    data-slot="icon-github"
     className={className}
     fill="currentColor"
     viewBox="0 0 24 24"
