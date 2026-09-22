@@ -68,11 +68,14 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
   const loopTubeMeshRef = useRef<THREE.Mesh | null>(null);
   const molecularGroupRef = useRef<THREE.Group | null>(null);
   const reactorGroupRef = useRef<THREE.Group | null>(null);
+  const orbitalMesh1Ref = useRef<THREE.Mesh | null>(null);
+  const orbitalMesh2Ref = useRef<THREE.Mesh | null>(null);
+  const cloudPointsRef = useRef<THREE.Points | null>(null);
 
   // Interaction State
   const isDraggingRef = useRef<boolean>(false);
   const previousMousePosRef = useRef<{ x: number; y: number }>({ x: 0, y: 0 });
-  const rotationMomentumRef = useRef<{ x: number; y: number }>({ x: 0, y: 0.003 });
+  const rotationMomentumRef = useRef<{ x: number; y: number }>({ x: 0, y: 0.005 });
   const targetRotationRef = useRef<{ x: number; y: number }>({ x: 0.15, y: 0.35 });
 
   // Dynamic Temperature Thermal Palette
@@ -422,6 +425,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
     const orbitalMesh = new THREE.Mesh(orbitalGeo, orbitalMat);
     orbitalMesh.rotation.x = Math.PI / 3;
     molecularGroup.add(orbitalMesh);
+    orbitalMesh1Ref.current = orbitalMesh;
 
     const orbitalGeo2 = new THREE.TorusGeometry(1.75, 0.016, 16, 64);
     const orbitalMat2 = new THREE.MeshBasicMaterial({ color: 0xc8553d, transparent: true, opacity: 0.4 });
@@ -429,6 +433,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
     orbitalMesh2.rotation.x = -Math.PI / 4;
     orbitalMesh2.rotation.y = Math.PI / 6;
     molecularGroup.add(orbitalMesh2);
+    orbitalMesh2Ref.current = orbitalMesh2;
 
     // Subtle delocalized electron cloud particles
     const cloudCount = 120;
@@ -452,6 +457,7 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
     });
     const cloudPoints = new THREE.Points(cloudGeo, cloudMat);
     molecularGroup.add(cloudPoints);
+    cloudPointsRef.current = cloudPoints;
 
     // Initial orientation
     reactorGroup.rotation.x = 0.15;
@@ -517,6 +523,18 @@ export const ReactorCore3D: React.FC<ReactorCore3DProps> = ({
         // Subtle bond vibrational oscillation
         const vib = Math.sin(currentTime * 0.006 * (temperature / 300)) * 0.03;
         molecularGroupRef.current.scale.set(1 + vib, 1 - vib * 0.5, 1 + vib);
+
+        // Continuous Magic Animator Dynamic Precession for Orbital Rings
+        if (orbitalMesh1Ref.current) {
+          orbitalMesh1Ref.current.rotation.z += 0.016;
+        }
+        if (orbitalMesh2Ref.current) {
+          orbitalMesh2Ref.current.rotation.z -= 0.012;
+        }
+        if (cloudPointsRef.current) {
+          cloudPointsRef.current.rotation.y += 0.006;
+          cloudPointsRef.current.rotation.x += 0.003;
+        }
       }
 
       // Swirling Fluidized Bed Particle Simulation

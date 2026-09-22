@@ -4,6 +4,7 @@ import { ArrowDownRight, Award, FileText, Atom, Gauge, Rotate3d } from 'lucide-r
 import { profileData } from '../data/profileData';
 import { silk, spring } from '../engine/motion';
 import { ReactorCore3D } from './3d/ReactorCore3D';
+import { HeroAtomAnimation } from './HeroAtomAnimation';
 
 export const Hero: React.FC = () => {
   return (
@@ -12,8 +13,10 @@ export const Hero: React.FC = () => {
       id="hero" 
       className="relative min-h-[100dvh] flex flex-col justify-between overflow-hidden bg-[#080812] text-white"
     >
-      {/* Background Architectural Graph Texture */}
+      {/* Background Architectural Graph Texture & Animated Atmospheric Glow */}
       <div className="absolute inset-0 opacity-10 millimeter-grid pointer-events-none" />
+      <div className="absolute -top-24 -left-24 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-specimen/15 blur-3xl pointer-events-none animate-pulse" />
+      <div className="absolute top-1/3 -right-24 w-80 sm:w-96 h-80 sm:h-96 rounded-full bg-[#2563eb]/10 blur-3xl pointer-events-none animate-pulse" style={{ animationDelay: '2s' }} />
 
       {/* ═══════ LAYER 1: Archival Masthead Bar ═══════ */}
       <div className="relative z-20 pt-6 pb-3 border-b border-white/10">
@@ -74,13 +77,7 @@ export const Hero: React.FC = () => {
                   <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-bold text-white drop-shadow-[0_2px_18px_rgba(0,0,0,0.9)]">
                     {profileData.personal.fullName}
                   </span>
-                  <span 
-                    className="inline-flex items-center justify-center p-2 rounded-sm bg-specimen/20 border border-specimen/50 text-specimen shadow-[0_0_24px_rgba(200,85,61,0.4)] relative group hover:border-specimen transition-colors shrink-0"
-                    title="Computational Chemistry & Scientific ML"
-                  >
-                    <Atom className="size-6 sm:size-7 text-specimen animate-[spin_12s_linear_infinite]" />
-                    <span className="absolute -top-1 -right-1 size-2 rounded-full bg-reagent animate-pulse" />
-                  </span>
+                  <HeroAtomAnimation size={56} className="my-1" />
                 </div>
                 
                 <div className="mt-2.5 flex items-center gap-3 flex-wrap">
